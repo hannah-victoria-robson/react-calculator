@@ -7,12 +7,13 @@ function Calculator() {
 				<section className="calc-container">
 					<article>
 						<header>Calculator</header>
-						<div>
+						<div className="calculator">
 							<output className="output"></output>
 							<button className="AC">AC</button>
 							<button className="number-toggle">+/-</button>
 							<button className="percent">%</button>
-							<button className="times">X</button>
+							<button className="divide">/</button>
+							<button className="multiply">X</button>
 							<button className="subtract">-</button>
 							<button className="add">+</button>
 							<button className="equals">=</button>
