@@ -5,18 +5,20 @@ function Calculator() {
 		<>
 			<main>
 				<section className="calc-container">
-					<article>
+					<article className="calc-article">
 						<header>Calculator</header>
 						<div className="calculator">
-							<output className="output"></output>
-							<button className="AC">AC</button>
-							<button className="number-toggle">+/-</button>
-							<button className="percent">%</button>
-							<button className="divide">/</button>
-							<button className="multiply">X</button>
-							<button className="subtract">-</button>
-							<button className="add">+</button>
-							<button className="equals">=</button>
+							<output className="output">
+								<p className="numbers">440.99 </p>
+							</output>
+							<button className="AC top">AC</button>
+							<button className="number-toggle top">+/-</button>
+							<button className="percent top">%</button>
+							<button className="divide right">/</button>
+							<button className="multiply right">X</button>
+							<button className="subtract right">-</button>
+							<button className="add right">+</button>
+							<button className="equals right">=</button>
 							<button className="nine">9</button>
 							<button className="eight">8</button>
 							<button className="seven">7</button>
