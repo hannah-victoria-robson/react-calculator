@@ -13,7 +13,6 @@ function Calculator() {
 		<>
 			<main>
 				<section className="calc-container">
-					<header>Calculator</header>
 					<div className="calculator">
 						<div className="top-bar">
 							<div className="red"></div>
@@ -55,11 +54,6 @@ function Calculator() {
 						<button className="decimal">.</button>
 					</div>
 				</section>
-				<footer>
-					<p>view on github</p>
-
-					<p>Return to portfolio</p>
-				</footer>
 			</main>
 		</>
 	)

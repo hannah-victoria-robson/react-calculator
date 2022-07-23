@@ -6,6 +6,16 @@ header {
 	margin: 30px;
 	text-align: center;
 }
+.box {
+	position: absolute;
+	cursor: move;
+	color: black;
+	max-width: 215px;
+	border-radius: 5px;
+	padding: 1em;
+	margin: auto;
+	user-select: none;
+}
 
 /* ---- Calculator grid ---- */
 .calculator {
