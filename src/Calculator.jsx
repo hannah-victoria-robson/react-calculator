@@ -1,4 +1,12 @@
 import React from 'react'
+import {
+	RiDivideLine,
+	RiAddLine,
+	RiSubtractLine,
+	RiPercentLine,
+	RiCloseLine,
+} from 'react-icons/ri'
+import { TbEqual } from 'react-icons/tb'
 
 function Calculator() {
 	return (
@@ -15,12 +23,25 @@ function Calculator() {
 						<output className="output">440.99</output>
 						<button className="AC top">AC</button>
 						<button className="number-toggle top">+/-</button>
-						<button className="percent top">%</button>
-						<button className="divide right">/</button>
-						<button className="multiply right">X</button>
-						<button className="subtract right">-</button>
-						<button className="add right">+</button>
-						<button className="equals right">=</button>
+						<button className="percent top">
+							<RiPercentLine />
+						</button>
+						<button className="divide right">
+							<RiDivideLine />
+						</button>
+						<button className="multiply right">
+							<RiCloseLine />
+						</button>
+						<button className="subtract right">
+							<RiSubtractLine />
+						</button>
+						<button className="add right">
+							{' '}
+							<RiAddLine />
+						</button>
+						<button className="equals right">
+							<TbEqual />
+						</button>
 						<button className="nine">9</button>
 						<button className="eight">8</button>
 						<button className="seven">7</button>
@@ -34,6 +55,11 @@ function Calculator() {
 						<button className="decimal">.</button>
 					</div>
 				</section>
+				<footer>
+					<p>view on github</p>
+
+					<p>Return to portfolio</p>
+				</footer>
 			</main>
 		</>
 	)
