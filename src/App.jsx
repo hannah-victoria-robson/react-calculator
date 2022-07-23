@@ -1,7 +1,8 @@
 // import logo from './logo.svg'
 import './App.css'
+import Footer from './Footer'
 import Draggable from 'react-draggable'
-
+// import Details from './Details'
 import React from 'react'
 import Calculator from './Calculator'
 
@@ -15,8 +16,9 @@ function App() {
 						<Calculator />
 					</div>
 				</Draggable>
+				{/* <Details /> */}
 			</main>
-			<footer></footer>
+			<Footer />{' '}
 		</div>
 	)
 }

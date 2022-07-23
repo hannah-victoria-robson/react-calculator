@@ -6,6 +6,7 @@ header {
 	margin: 30px;
 	text-align: center;
 }
+/* ---- Draggable ---- */
 .box {
 	position: absolute;
 	cursor: move;
@@ -181,4 +182,34 @@ button:active {
 
 .right:active {
 	background-color: #cb7d08;
+}
+
+/* ---- Details ---- */
+/* .details-section {
+	position: absolute;
+	height: 100px;
+	bottom: 200px;
+	display: grid;
+	margin: auto;
+	width: 1000px;
+	grid-template: 1fr 1fr 1fr / 1fr 3fr 1fr;
+}
+
+.details-item {
+	grid-area: 2 / 2 / 3 / 3;
+	background-color: #28c840;
+} */
+
+/* ---- Footer ---- */
+.footer {
+	position: absolute;
+	bottom: 0px;
+	width: 100%;
+	background-color: #e8e8e8;
+}
+
+li {
+	text-decoration: none;
+	display: inline;
+	padding-left: 20px;
 }
