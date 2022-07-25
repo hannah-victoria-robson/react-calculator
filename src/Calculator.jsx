@@ -7,13 +7,15 @@ import {
 	RiCloseLine,
 } from 'react-icons/ri'
 import { TbEqual } from 'react-icons/tb'
+import { math } from './function'
 
 function Calculator() {
-	const [activeInput, setActiveInput] = useState(0)
+	const [output, setOutput] = useState('0')
 
 	function handleClick(event) {
 		const newInput = event.target.value
-		setActiveInput(newInput)
+
+		setOutput(math(newInput, output))
 	}
 	return (
 		<>
@@ -25,7 +27,7 @@ function Calculator() {
 							<div className="yellow"></div>
 							<div className="green"></div>
 						</div>
-						<output className="output">{activeInput}</output>
+						<output className="output">{output}</output>
 						<button className="AC top" value={'AC'} onClick={handleClick}>
 							AC
 						</button>
