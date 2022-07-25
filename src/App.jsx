@@ -1,9 +1,10 @@
-// import logo from './logo.svg'
 import './App.css'
 import Footer from './Footer'
 import Draggable from 'react-draggable'
 // import Details from './Details'
-import React from 'react'
+import React, { useState } from 'react'
+// import ReactDOM from 'react-dom'
+
 import Calculator from './Calculator'
 
 function App() {
@@ -11,11 +12,14 @@ function App() {
 		<div className="App">
 			<header>Calculator</header>
 			<main>
-				<Draggable>
+				<div className="calc-parent">
+					<>{/* <section className="calc-frame" id="border"></section> */}</>
+					{/* <Draggable defaultPosition={{ x: -125, y: 200 }}> */}
 					<div className="box">
-						<Calculator />
+						<Calculator id="calc" />
 					</div>
-				</Draggable>
+					{/* </Draggable> */}
+				</div>
 				{/* <Details /> */}
 			</main>
 			<Footer />{' '}
