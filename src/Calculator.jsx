@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import {
 	RiDivideLine,
 	RiAddLine,
@@ -7,16 +7,78 @@ import {
 	RiCloseLine,
 } from 'react-icons/ri'
 import { TbEqual } from 'react-icons/tb'
-import { math } from './function'
+import { isNumber, handleNumbers, handleOperators } from './function'
 
 function Calculator() {
-	const [output, setOutput] = useState('0')
+	const [output, setOutput] = useState({
+		firstOperand: '0',
+		operator: '0',
+		secondOperand: '0',
+		sum: 0,
+		output: '0',
+	})
 
+	function setNewOutput(output) {
+		setOutput(output)
+	}
 	function handleClick(event) {
 		const newInput = event.target.value
+		console.log(event.target.value)
+		console.log(newInput)
 
-		setOutput(math(newInput, output))
+		if (isNumber(newInput)) {
+			setNewOutput(handleNumbers(output, newInput))
+		} else {
+			setNewOutput(handleOperators(output, newInput))
+		}
 	}
+
+	// ---- edited out ----
+
+	// function math(newInput, output, callback) {
+	// 	switch (newInput) {
+	// 		case 'equals':
+	// 			const equal = calculateSum(output)
+	// 			callback(equal)
+	// 			break
+	// 		case 'AC':
+	// 			const clear = clearOutput(output)
+	// 			callback(clear)
+	// 			break
+	// 		case 'add':
+	// 			const adding = add(output)
+	// 			callback(adding)
+	// 			break
+	// 		case 'subtract':
+	// 			const minus = subtract(output)
+	// 			callback(minus)
+	// 			break
+	// 		case 'multiply':
+	// 			const times = multiply(output)
+	// 			callback(times)
+	// 			break
+	// 		case 'divide':
+	// 			const div = divide(output)
+	// 			callback(div)
+	// 			break
+	// 		// case '1':
+	// 		// 	const numbers = handleNumbers(output, newInput)
+	// 		// 	callback(numbers)
+	// 		// 	break
+	// 		default:
+	// 			console.log('default')
+	// 			const numbers = handleNumbers(output, newInput)
+	// 			callback(numbers)
+	// 			break
+	// 	}
+	// }
+	// math(newInput, output, setNewOutput)
+	// }
+
+	// useEffect(() => {
+	// 	console.log('useeffect: ' + output)
+	// }, [output])
+
 	return (
 		<>
 			<main>
@@ -27,7 +89,7 @@ function Calculator() {
 							<div className="yellow"></div>
 							<div className="green"></div>
 						</div>
-						<output className="output">{output}</output>
+						<output className="output">{output.output}</output>
 						<button className="AC top" value={'AC'} onClick={handleClick}>
 							AC
 						</button>
