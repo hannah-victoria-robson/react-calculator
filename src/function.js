@@ -2,36 +2,22 @@ function isNumber(newInput) {
 	const numberInput = Number(newInput)
 
 	if (isNaN(numberInput)) {
-		console.log('Not a number')
-
 		return false
 	}
 	if (typeof numberInput == 'number') {
-		console.log('is a number')
 		return true
 	}
 }
 
 function setOperater(output, newInput) {
-	const operatorSymbols = {
-		equals: '=',
-		add: '+',
-		subtract: '-',
-		divide: '/',
-		mulitply: '*',
-	}
 	const input = newInput
 	const outputCopy = { ...output }
-	const newoperator = operatorSymbols[input]
-	outputCopy.operator = newoperator
-
+	outputCopy.operator = input
+	outputCopy.secondOperand = '0'
 	return outputCopy
 }
 async function handleOperators(output, newInput) {
-	console.log(newInput)
-	console.log('handleOperator')
 	if (newInput === 'AC') {
-		console.log('handle clear')
 		const outputCopy = { ...output }
 		const clear = await clearOutput(outputCopy)
 		return clear
@@ -40,7 +26,6 @@ async function handleOperators(output, newInput) {
 		const sum = await calculateSum(outputCopy)
 		return sum
 	} else {
-		console.log('handle +- etc')
 		const outputCopy = { ...output }
 		const operator = await setOperater(outputCopy, newInput)
 		return operator
@@ -58,7 +43,6 @@ function clearOutput(output) {
 }
 
 function handleNumbers(output, newInput) {
-	console.log('handleNumbers')
 	const outputCopy = { ...output }
 	if (output.firstOperand === '0') {
 		outputCopy.firstOperand = newInput
@@ -95,11 +79,36 @@ function handleNumbers(output, newInput) {
 }
 
 function calculateSum(output) {
-	console.log('calculateSum')
 	const outputCopy = { ...output }
-	outputCopy.sum = 23
-	outputCopy.output = '23'
-	return outputCopy
+	if (outputCopy.operator === 'add') {
+		const sum =
+			parseFloat(outputCopy.firstOperand) + parseFloat(outputCopy.secondOperand)
+		outputCopy.sum = sum
+		const sumString = '' + sum
+		outputCopy.output = sumString
+		return outputCopy
+	} else if (outputCopy.operator === 'subtract') {
+		const sum =
+			parseFloat(outputCopy.firstOperand) - parseFloat(outputCopy.secondOperand)
+		outputCopy.sum = sum
+		const sumString = '' + sum
+		outputCopy.output = sumString
+		return outputCopy
+	} else if (outputCopy.operator === 'divide') {
+		const sum =
+			parseFloat(outputCopy.firstOperand) / parseFloat(outputCopy.secondOperand)
+		outputCopy.sum = sum
+		const sumString = '' + sum
+		outputCopy.output = sumString
+		return outputCopy
+	} else if (outputCopy.operator === 'multiply') {
+		const sum =
+			parseFloat(outputCopy.firstOperand) * parseFloat(outputCopy.secondOperand)
+		outputCopy.sum = sum
+		const sumString = '' + sum
+		outputCopy.output = sumString
+		return outputCopy
+	}
 }
 
 export { isNumber, clearOutput, handleNumbers, handleOperators, calculateSum }
