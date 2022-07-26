@@ -259,13 +259,9 @@ li + li::before {
 }
 .footer-list-item {
 	padding: 2px;
-	/* padding: 30px; */
-	/* color: black; */
 }
 
 .built-by {
-	/* font-style: italic; */
-	/* font-weight: bold; */
 	color: #585858;
 }
 
