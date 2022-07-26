@@ -9,36 +9,27 @@ function isNumber(newInput) {
 	}
 }
 
-function setOperater(output, newInput) {
-	const input = newInput
-	const outputCopy = { ...output }
-	outputCopy.operator = input
-	outputCopy.secondOperand = '0'
-	return outputCopy
-}
-async function handleOperators(output, newInput) {
+function handleOperators(output, newInput) {
 	if (newInput === 'AC') {
 		const outputCopy = { ...output }
-		const clear = await clearOutput(outputCopy)
+		const clear = clearOutput(outputCopy)
 		return clear
 	} else if (newInput === 'equals') {
 		const outputCopy = { ...output }
-		const sum = await calculateSum(outputCopy)
+		const sum = calculateSum(outputCopy)
 		return sum
 	} else {
 		const outputCopy = { ...output }
-		const operator = await setOperater(outputCopy, newInput)
+		const operator = setOperator(outputCopy, newInput)
 		return operator
 	}
 }
 
-function clearOutput(output) {
+function setOperator(output, newInput) {
+	const input = newInput
 	const outputCopy = { ...output }
-	outputCopy.sum = 0
+	outputCopy.operator = input
 	outputCopy.secondOperand = '0'
-	outputCopy.firstOperand = '0'
-	outputCopy.operator = '0'
-	outputCopy.output = '0'
 	return outputCopy
 }
 
@@ -78,7 +69,7 @@ function handleNumbers(output, newInput) {
 	}
 }
 
-async function calculateSum(output) {
+function calculateSum(output) {
 	const outputCopy = { ...output }
 	let sum = []
 	if (outputCopy.operator === 'add') {
@@ -98,12 +89,31 @@ async function calculateSum(output) {
 			parseFloat(outputCopy.firstOperand) * parseFloat(outputCopy.secondOperand)
 		)
 	}
-
 	const sumResult = sum[0]
 	outputCopy.sum = sumResult
 	const sumString = '' + sumResult
 	outputCopy.output = sumString
+	outputCopy.firstOperand = sumString
+	outputCopy.operator = '0'
+	outputCopy.secondOperand = '0'
 	return outputCopy
 }
 
-export { isNumber, clearOutput, handleNumbers, handleOperators, calculateSum }
+function clearOutput(output) {
+	const outputCopy = { ...output }
+	outputCopy.sum = 0
+	outputCopy.secondOperand = '0'
+	outputCopy.firstOperand = '0'
+	outputCopy.operator = '0'
+	outputCopy.output = '0'
+	return outputCopy
+}
+
+export {
+	isNumber,
+	handleOperators,
+	setOperator,
+	handleNumbers,
+	calculateSum,
+	clearOutput,
+}

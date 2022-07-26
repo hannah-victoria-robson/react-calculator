@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import {
 	RiDivideLine,
 	RiAddLine,
@@ -7,7 +7,7 @@ import {
 	RiCloseLine,
 } from 'react-icons/ri'
 import { TbEqual } from 'react-icons/tb'
-import { isNumber, handleNumbers, handleOperators } from './function'
+import { isNumber, handleNumbers, handleOperators } from './functions'
 
 function Calculator() {
 	const [output, setOutput] = useState({
@@ -20,69 +20,22 @@ function Calculator() {
 
 	function setNewOutput(output) {
 		setOutput(output)
-		return null
+		// return null
 	}
-	async function handleClick(event) {
-		const newInput = event.target.value
-		console.log(event.target.value)
+	function handleClick(event) {
+		const newInput = event.currentTarget.value
 		console.log(newInput)
 
 		if (isNumber(newInput)) {
-			const numbers = await handleNumbers(output, newInput)
+			const numbers = handleNumbers(output, newInput)
 			setNewOutput(numbers)
-			return null
+			// return null
 		} else {
-			const operators = await handleOperators(output, newInput)
+			const operators = handleOperators(output, newInput)
 			setNewOutput(operators)
-			return null
+			// return null
 		}
 	}
-
-	// ---- edited out ----
-
-	// function math(newInput, output, callback) {
-	// 	switch (newInput) {
-	// 		case 'equals':
-	// 			const equal = calculateSum(output)
-	// 			callback(equal)
-	// 			break
-	// 		case 'AC':
-	// 			const clear = clearOutput(output)
-	// 			callback(clear)
-	// 			break
-	// 		case 'add':
-	// 			const adding = add(output)
-	// 			callback(adding)
-	// 			break
-	// 		case 'subtract':
-	// 			const minus = subtract(output)
-	// 			callback(minus)
-	// 			break
-	// 		case 'multiply':
-	// 			const times = multiply(output)
-	// 			callback(times)
-	// 			break
-	// 		case 'divide':
-	// 			const div = divide(output)
-	// 			callback(div)
-	// 			break
-	// 		// case '1':
-	// 		// 	const numbers = handleNumbers(output, newInput)
-	// 		// 	callback(numbers)
-	// 		// 	break
-	// 		default:
-	// 			console.log('default')
-	// 			const numbers = handleNumbers(output, newInput)
-	// 			callback(numbers)
-	// 			break
-	// 	}
-	// }
-	// math(newInput, output, setNewOutput)
-	// }
-
-	// useEffect(() => {
-	// 	console.log('useeffect: ' + output)
-	// }, [output])
 
 	return (
 		<>
