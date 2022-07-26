@@ -78,37 +78,32 @@ function handleNumbers(output, newInput) {
 	}
 }
 
-function calculateSum(output) {
+async function calculateSum(output) {
 	const outputCopy = { ...output }
+	let sum = []
 	if (outputCopy.operator === 'add') {
-		const sum =
+		sum.push(
 			parseFloat(outputCopy.firstOperand) + parseFloat(outputCopy.secondOperand)
-		outputCopy.sum = sum
-		const sumString = '' + sum
-		outputCopy.output = sumString
-		return outputCopy
+		)
 	} else if (outputCopy.operator === 'subtract') {
-		const sum =
+		sum.push(
 			parseFloat(outputCopy.firstOperand) - parseFloat(outputCopy.secondOperand)
-		outputCopy.sum = sum
-		const sumString = '' + sum
-		outputCopy.output = sumString
-		return outputCopy
+		)
 	} else if (outputCopy.operator === 'divide') {
-		const sum =
+		sum.push(
 			parseFloat(outputCopy.firstOperand) / parseFloat(outputCopy.secondOperand)
-		outputCopy.sum = sum
-		const sumString = '' + sum
-		outputCopy.output = sumString
-		return outputCopy
+		)
 	} else if (outputCopy.operator === 'multiply') {
-		const sum =
+		sum.push(
 			parseFloat(outputCopy.firstOperand) * parseFloat(outputCopy.secondOperand)
-		outputCopy.sum = sum
-		const sumString = '' + sum
-		outputCopy.output = sumString
-		return outputCopy
+		)
 	}
+
+	const sumResult = sum[0]
+	outputCopy.sum = sumResult
+	const sumString = '' + sumResult
+	outputCopy.output = sumString
+	return outputCopy
 }
 
 export { isNumber, clearOutput, handleNumbers, handleOperators, calculateSum }
