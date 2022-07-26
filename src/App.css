@@ -258,7 +258,7 @@ li + li::before {
 	content: ' | ';
 }
 .footer-list-item {
-	padding: 2px;
+	/* padding: 3px; */
 }
 
 .built-by {

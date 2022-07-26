@@ -12,7 +12,7 @@ function Footer() {
 						</a>
 					</li>
 					<li className="footer-list-item">
-						<a href="#">View Portfolio</a>
+						<a href="#"> View Portfolio </a>
 					</li>
 					<li className="footer-list-item">
 						<a href="https://www.linkedin.com/in/hannahvrobson/">
