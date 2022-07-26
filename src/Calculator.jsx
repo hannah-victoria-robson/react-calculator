@@ -20,16 +20,21 @@ function Calculator() {
 
 	function setNewOutput(output) {
 		setOutput(output)
+		return null
 	}
-	function handleClick(event) {
+	async function handleClick(event) {
 		const newInput = event.target.value
 		console.log(event.target.value)
 		console.log(newInput)
 
 		if (isNumber(newInput)) {
-			setNewOutput(handleNumbers(output, newInput))
+			const numbers = await handleNumbers(output, newInput)
+			setNewOutput(numbers)
+			return null
 		} else {
-			setNewOutput(handleOperators(output, newInput))
+			const operators = await handleOperators(output, newInput)
+			setNewOutput(operators)
+			return null
 		}
 	}
 
