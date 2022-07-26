@@ -1,16 +1,17 @@
 import './App.css'
+import Header from './Header'
+import Calculator from './Calculator'
+
 import Footer from './Footer'
 import Draggable from 'react-draggable'
 // import Details from './Details'
 import React, { useState } from 'react'
 // import ReactDOM from 'react-dom'
 
-import Calculator from './Calculator'
-
 function App() {
 	return (
 		<div className="App">
-			<header>Calculator</header>
+			<Header />
 			<main>
 				<div className="calc-parent">
 					<>{/* <section className="calc-frame" id="border"></section> */}</>

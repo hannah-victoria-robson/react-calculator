@@ -2,11 +2,25 @@
 	margin: 100px;
 }
 
+/* ---- Page heading ---- */
 header {
 	margin: 30px;
 	margin-bottom: 100px;
+}
+
+h1 {
 	text-align: center;
-	font-size: 40px;
+	font-size: 50px;
+	color: #ff9e0b;
+}
+
+h2 {
+	text-align: center;
+	color: #686169;
+}
+
+h4 {
+	text-align: center;
 }
 /* ---- Draggable ---- */
 .box {
@@ -239,5 +253,27 @@ button:active {
 li {
 	text-decoration: none;
 	display: inline;
-	padding-left: 20px;
+}
+li + li::before {
+	content: ' | ';
+}
+.footer-list-item {
+	padding: 2px;
+	/* padding: 30px; */
+	/* color: black; */
+}
+
+.built-by {
+	/* font-style: italic; */
+	/* font-weight: bold; */
+	color: #585858;
+}
+
+a {
+	text-decoration: none !important;
+	color: #585858;
+}
+
+a:hover {
+	color: #ff9e0b;
 }
