@@ -15,7 +15,7 @@ function handleOperators(output, newInput) {
 		return clear
 	} else if (newInput === 'equals') {
 		const outputCopy = { ...output }
-		const sum = calculateSum(outputCopy)
+		const sum = calculateSum(outputCopy, newInput)
 		return sum
 	} else if (newInput === 'toggle') {
 		const outputCopy = { ...output }
@@ -77,7 +77,6 @@ function toggleNumber(output) {
 		const number = output.firstOperand
 		const numArray = number.split(',')
 		numArray[0] === '-' ? numArray.shift() : numArray.unshift('-')
-		console.log(numArray)
 		const newOutput = numArray.join('')
 		output.firstOperand = newOutput
 		output.output = newOutput
@@ -88,20 +87,14 @@ function toggleNumber(output) {
 function setOperator(output, newInput) {
 	const outputCopy = { ...output }
 	const input = newInput
-
 	if (output.secondOperand !== '0') {
 		const sum = calculateSum(output)
 		sum.operator = input
 		return sum
-	} else if (
-		outputCopy.firstOperand !== '0' &&
-		outputCopy.secondOperand === '0'
-	) {
+	} else {
 		outputCopy.operator = input
 		outputCopy.secondOperand = '0'
 		return outputCopy
-	} else {
-		console.log('set operator error')
 	}
 }
 
@@ -160,14 +153,65 @@ function calculateSum(output, input) {
 		sum.push(
 			parseFloat(outputCopy.firstOperand) * parseFloat(outputCopy.secondOperand)
 		)
+	} else if (
+		input === 'equals' &&
+		outputCopy.secondOperand === '0' &&
+		outputCopy.lastOperator !== '0' &&
+		outputCopy.lastSecondOperand !== '0'
+	) {
+		switch (outputCopy.lastOperator) {
+			case 'add':
+				sum.push(
+					parseFloat(outputCopy.firstOperand) +
+						parseFloat(outputCopy.lastSecondOperand)
+				)
+				break
+			case 'subtract':
+				sum.push(
+					parseFloat(outputCopy.firstOperand) -
+						parseFloat(outputCopy.lastSecondOperand)
+				)
+				break
+			case 'multiply':
+				sum.push(
+					parseFloat(outputCopy.firstOperand) *
+						parseFloat(outputCopy.lastSecondOperand)
+				)
+				break
+			case 'divide':
+				sum.push(
+					parseFloat(outputCopy.firstOperand) /
+						parseFloat(outputCopy.lastSecondOperand)
+				)
+				break
+			default:
+				console.log('switch case sum missed all')
+		}
 	}
+	const finalOutput = setSum(outputCopy, sum)
+	return finalOutput
+}
+
+function setSum(output, sum) {
+	const outputCopy = { ...output }
 	const sumResult = sum[0]
-	outputCopy.sum = sumResult
 	const sumString = '' + sumResult
-	outputCopy.output = sumString
+	const operatorArray = []
+	output.operator === '0' && output.lastOperator !== '0'
+		? operatorArray.push(output.lastOperator)
+		: operatorArray.push(output.operator)
+
+	output.secondOperand === '0' && output.lastSecondOperand !== '0'
+		? operatorArray.push(output.lastSecondOperand)
+		: operatorArray.push(output.secondOperand)
+
 	outputCopy.firstOperand = sumString
 	outputCopy.operator = '0'
 	outputCopy.secondOperand = '0'
+	outputCopy.sum = sumResult
+	outputCopy.output = sumString
+	outputCopy.lastOperator = operatorArray[0]
+	outputCopy.lastSecondOperand = operatorArray[1]
 	return outputCopy
 }
 

@@ -16,24 +16,33 @@ function Calculator() {
 		secondOperand: '0',
 		sum: 0,
 		output: '0',
+		lastOperator: '0',
+		lastSecondOperand: '0',
 	})
 
 	function setNewOutput(output) {
 		setOutput(output)
-		// return null
+		console.log(
+			'last operator: ' +
+				output.lastOperator +
+				'. last Second number: ' +
+				output.lastSecondOperand
+		)
 	}
 	function handleClick(event) {
 		const newInput = event.currentTarget.value
-		console.log(newInput)
 
 		if (isNumber(newInput)) {
 			const numbers = handleNumbers(output, newInput)
+			// if (numbers.output === 'undefined' || numbers === 'undefined') {
+			// 	numbers.output = 'ERROR'
+			// 	setNewOutput(numbers)
+			// }
 			setNewOutput(numbers)
-			// return null
 		} else {
 			const operators = handleOperators(output, newInput)
+
 			setNewOutput(operators)
-			// return null
 		}
 	}
 

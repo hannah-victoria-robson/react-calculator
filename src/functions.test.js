@@ -193,5 +193,8 @@ it('multiples 2 by 3, sets sum and output to 6', () => {
 	})
 })
 
+test.todo('write tests for handleDecimal')
+test.todo('write tests for toggleNumber')
+test.todo('write tests for handlePercent')
 test.todo('write tests for function calls')
 test.todo('write tests for invalid input')
