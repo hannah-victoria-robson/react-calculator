@@ -25,10 +25,31 @@ function handleOperators(output, newInput) {
 		const outputCopy = { ...output }
 		const operator = handlePercent(outputCopy)
 		return operator
+	} else if (newInput === 'decimal') {
+		const outputCopy = { ...output }
+		const operator = handleDecimal(outputCopy)
+		return operator
 	} else {
 		const outputCopy = { ...output }
 		const operator = setOperator(outputCopy, newInput)
 		return operator
+	}
+}
+
+function handleDecimal(output) {
+	const outputCopy = { ...output }
+	if (output.secondOperand !== '0') {
+		const number = output.secondOperand
+		const decimal = number + '.'
+		outputCopy.secondOperand = decimal
+		outputCopy.output = decimal
+		return outputCopy
+	} else if (output.secondOperand === '0') {
+		const number = outputCopy.firstOperand
+		const decimal = number + '.'
+		outputCopy.firstOperand = decimal
+		outputCopy.output = decimal
+		return outputCopy
 	}
 }
 
