@@ -1,6 +1,5 @@
 function isNumber(newInput) {
 	const numberInput = Number(newInput)
-
 	if (isNaN(numberInput)) {
 		return false
 	}
@@ -18,6 +17,14 @@ function handleOperators(output, newInput) {
 		const outputCopy = { ...output }
 		const sum = calculateSum(outputCopy)
 		return sum
+	} else if (newInput === 'toggle') {
+		const outputCopy = { ...output }
+		const operator = toggleNumber(outputCopy)
+		return operator
+	} else if (newInput === 'percent') {
+		const outputCopy = { ...output }
+		const operator = handlePercent(outputCopy)
+		return operator
 	} else {
 		const outputCopy = { ...output }
 		const operator = setOperator(outputCopy, newInput)
@@ -25,12 +32,56 @@ function handleOperators(output, newInput) {
 	}
 }
 
-function setOperator(output, newInput) {
-	const input = newInput
+function handlePercent(output) {
 	const outputCopy = { ...output }
-	outputCopy.operator = input
-	outputCopy.secondOperand = '0'
+	const decimal = []
+	if (output.secondOperand !== '0') {
+		const newOutput = calculateSum(output)
+		const outputSum = newOutput.sum
+		const calc = outputSum / 100
+		decimal.push(calc)
+	} else if (output.secondOperand === '0') {
+		const num = parseFloat(output.firstOperand)
+		const calc = num / 100
+		decimal.push(calc)
+	}
+	outputCopy.sum = decimal[0]
+	outputCopy.firstOperand = '' + decimal[0]
+	outputCopy.output = '' + decimal[0]
 	return outputCopy
+}
+
+function toggleNumber(output) {
+	if (output.firstOperand !== '0' && output.operator === '0') {
+		const number = output.firstOperand
+		const numArray = number.split(',')
+		numArray[0] === '-' ? numArray.shift() : numArray.unshift('-')
+		console.log(numArray)
+		const newOutput = numArray.join('')
+		output.firstOperand = newOutput
+		output.output = newOutput
+		return output
+	}
+}
+
+function setOperator(output, newInput) {
+	const outputCopy = { ...output }
+	const input = newInput
+
+	if (output.secondOperand !== '0') {
+		const sum = calculateSum(output)
+		sum.operator = input
+		return sum
+	} else if (
+		outputCopy.firstOperand !== '0' &&
+		outputCopy.secondOperand === '0'
+	) {
+		outputCopy.operator = input
+		outputCopy.secondOperand = '0'
+		return outputCopy
+	} else {
+		console.log('set operator error')
+	}
 }
 
 function handleNumbers(output, newInput) {
@@ -69,7 +120,7 @@ function handleNumbers(output, newInput) {
 	}
 }
 
-function calculateSum(output) {
+function calculateSum(output, input) {
 	const outputCopy = { ...output }
 	let sum = []
 	if (outputCopy.operator === 'add') {
