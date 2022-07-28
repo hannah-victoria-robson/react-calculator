@@ -1,9 +1,5 @@
 // undefined needs to show ERROR
 
-// font size decreases to fit all numbers
-
-// 16 decimals places max  e.g. 1.234567890123456
-
 function isNumber(newInput) {
 	const numberInput = Number(newInput)
 	if (isNaN(numberInput)) {
@@ -223,7 +219,6 @@ function calculateSum(output) {
 	}
 }
 
-// limit decimals to 16 (1.111111111111111)
 function setSum(output, sum) {
 	const outputCopy = { ...output }
 	const sumString = '' + sum
@@ -253,39 +248,28 @@ function setFontSize(output) {
 	if (length > 40 && length <= 65) {
 		const extraLength = length - 9
 		const remove = 50 - extraLength
-		console.log('remove: ' + remove)
 		const minus = remove * 0.4
 		const fontSize = minus
-		console.log('minus: ' + minus)
 
 		console.log(fontSize)
 		output.fontSize = fontSize + 'px'
 	} else if (length > 20 && length <= 40) {
 		const extraLength = length - 9
 		const remove = 50 - extraLength
-		console.log('remove: ' + remove)
 		const minus = remove * 0.5
 		const fontSize = minus
-		console.log('minus: ' + minus)
-
-		console.log(fontSize)
 		output.fontSize = fontSize + 'px'
 	} else if (length > 12 && length <= 30) {
 		const extraLength = length - 9
 		const remove = 50 - extraLength
-		console.log('remove: ' + remove)
 		const minus = remove * 0.6
 		const fontSize = minus
-		console.log('minus: ' + minus)
-
-		console.log(fontSize)
 		output.fontSize = fontSize + 'px'
 	} else if (length > 9) {
 		const extraLength = length - 9
 		const remove = 50 - extraLength
 		const minus = remove * 0.7
 		const fontSize = minus
-		console.log(fontSize)
 		output.fontSize = fontSize + 'px'
 	}
 	return output

@@ -19,21 +19,9 @@ function Calculator() {
 		lastOperator: '0',
 		lastSecondOperand: '0',
 		fontSize: '45px',
-		numberLength: [],
+		// numberLength: [],
 	})
 
-	// let fontSize = '50px'
-
-	// function setFontSize(output) {
-	// 	const outputData = output.firstOperand
-	// 	const length = outputData.length
-	// 	if (length > 7) {
-	// 		fontSize = 50 - length
-	// 		console.log(fontSize)
-	// 		output.fontSize = fontSize
-	// 	}
-	// 	return output
-	// }
 	function setNewOutput(output) {
 		setOutput(output)
 		// console.log('add logic to handle undefined')

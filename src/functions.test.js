@@ -250,6 +250,7 @@ it('repeats previous operator and secondOperand when the equals button is clicke
 	})
 })
 test.todo('write tests for runCalculation')
+test.todo('write tests for setFontSize')
 test.todo('write tests for setSum')
 test.todo('write tests for handleDecimal')
 test.todo('write tests for toggleNumber')
