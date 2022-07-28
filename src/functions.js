@@ -1,13 +1,8 @@
-// when you click a number, then operator, then equals, it applies the operator as if it is the same number
-// e.g. 9 + =
-// ends up as 9+9 =
-//  then each = will add 9
-
-// number then equals just maintains the current number
-// 9 =
-//  it will just be 9
-
 // undefined needs to show ERROR
+
+// font size decreases to fit all numbers
+
+// 16 decimals places max  e.g. 1.234567890123456
 
 function isNumber(newInput) {
 	const numberInput = Number(newInput)
@@ -145,62 +140,74 @@ function handleNumbers(output, newInput) {
 	}
 }
 
-function calculateSum(output, input) {
+function calculateSum(output) {
 	const outputCopy = { ...output }
-	let sum = []
-	if (outputCopy.operator === 'add') {
-		sum.push(
-			parseFloat(outputCopy.firstOperand) + parseFloat(outputCopy.secondOperand)
-		)
-	} else if (outputCopy.operator === 'subtract') {
-		sum.push(
-			parseFloat(outputCopy.firstOperand) - parseFloat(outputCopy.secondOperand)
-		)
-	} else if (outputCopy.operator === 'divide') {
-		sum.push(
-			parseFloat(outputCopy.firstOperand) / parseFloat(outputCopy.secondOperand)
-		)
-	} else if (outputCopy.operator === 'multiply') {
-		sum.push(
-			parseFloat(outputCopy.firstOperand) * parseFloat(outputCopy.secondOperand)
-		)
+	if (
+		outputCopy.firstOperand !== '0' &&
+		outputCopy.operator !== '0' &&
+		outputCopy.secondOperand !== '0'
+	) {
+		const sum = runCalculation(outputCopy)
+		return sum
 	} else if (
-		input === 'equals' &&
+		outputCopy.firstOperand !== '0' &&
+		outputCopy.operator !== '0' &&
+		outputCopy.secondOperand === '0'
+	) {
+		const secondOperand = outputCopy.firstOperand
+		outputCopy.secondOperand = secondOperand
+		const sum = runCalculation(outputCopy)
+		return sum
+	} else if (
+		outputCopy.firstOperand !== '0' &&
+		outputCopy.operator === '0' &&
 		outputCopy.secondOperand === '0' &&
 		outputCopy.lastOperator !== '0' &&
 		outputCopy.lastSecondOperand !== '0'
 	) {
-		switch (outputCopy.lastOperator) {
-			case 'add':
-				sum.push(
-					parseFloat(outputCopy.firstOperand) +
-						parseFloat(outputCopy.lastSecondOperand)
-				)
-				break
-			case 'subtract':
-				sum.push(
-					parseFloat(outputCopy.firstOperand) -
-						parseFloat(outputCopy.lastSecondOperand)
-				)
-				break
-			case 'multiply':
-				sum.push(
-					parseFloat(outputCopy.firstOperand) *
-						parseFloat(outputCopy.lastSecondOperand)
-				)
-				break
-			case 'divide':
-				sum.push(
-					parseFloat(outputCopy.firstOperand) /
-						parseFloat(outputCopy.lastSecondOperand)
-				)
-				break
-			default:
-				console.log('switch case sum missed all')
-		}
+		const operator = outputCopy.lastOperator
+		const secondOperand = outputCopy.lastSecondOperand
+		outputCopy.operator = operator
+		outputCopy.secondOperand = secondOperand
+		const sum = runCalculation(outputCopy)
+		return sum
+	} else if (
+		outputCopy.firstOperand !== '0' &&
+		outputCopy.operator === '0' &&
+		outputCopy.secondOperand === '0' &&
+		outputCopy.lastOperator === '0' &&
+		outputCopy.lastSecondOperand === '0'
+	) {
+		return outputCopy
 	}
-	const finalOutput = setSum(outputCopy, sum)
-	return finalOutput
+
+	function runCalculation(output) {
+		const outputCopy = { ...output }
+		let sum = []
+		if (outputCopy.operator === 'add') {
+			sum.push(
+				parseFloat(outputCopy.firstOperand) +
+					parseFloat(outputCopy.secondOperand)
+			)
+		} else if (outputCopy.operator === 'subtract') {
+			sum.push(
+				parseFloat(outputCopy.firstOperand) -
+					parseFloat(outputCopy.secondOperand)
+			)
+		} else if (outputCopy.operator === 'divide') {
+			sum.push(
+				parseFloat(outputCopy.firstOperand) /
+					parseFloat(outputCopy.secondOperand)
+			)
+		} else if (outputCopy.operator === 'multiply') {
+			sum.push(
+				parseFloat(outputCopy.firstOperand) *
+					parseFloat(outputCopy.secondOperand)
+			)
+		}
+		const finalOutput = setSum(outputCopy, sum)
+		return finalOutput
+	}
 }
 
 // limit decimals to 16 (1.111111111111111)
