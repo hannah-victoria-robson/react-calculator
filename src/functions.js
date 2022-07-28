@@ -50,11 +50,15 @@ function handleDecimal(output) {
 		outputCopy.secondOperand = decimal
 		outputCopy.output = decimal
 		return outputCopy
-	} else if (output.secondOperand === '0') {
+	} else if (output.secondOperand === '0' && output.operator === '0') {
 		const number = outputCopy.firstOperand
 		const decimal = number + '.'
 		outputCopy.firstOperand = decimal
 		outputCopy.output = decimal
+		return outputCopy
+	} else if (output.secondOperand === '0' && output.operator !== '0') {
+		outputCopy.secondOperand = '0.'
+		outputCopy.output = '0.'
 		return outputCopy
 	}
 }
@@ -205,7 +209,9 @@ function calculateSum(output) {
 					parseFloat(outputCopy.secondOperand)
 			)
 		}
-		const finalOutput = setSum(outputCopy, sum)
+		const decimalSum = sum[0].toFixed(15)
+		const finalSum = parseFloat(decimalSum)
+		const finalOutput = setSum(outputCopy, finalSum)
 		return finalOutput
 	}
 }
@@ -213,8 +219,7 @@ function calculateSum(output) {
 // limit decimals to 16 (1.111111111111111)
 function setSum(output, sum) {
 	const outputCopy = { ...output }
-	const sumResult = sum[0]
-	const sumString = '' + sumResult
+	const sumString = '' + sum
 	const operatorArray = []
 	output.operator === '0' && output.lastOperator !== '0'
 		? operatorArray.push(output.lastOperator)
@@ -227,7 +232,7 @@ function setSum(output, sum) {
 	outputCopy.firstOperand = sumString
 	outputCopy.operator = '0'
 	outputCopy.secondOperand = '0'
-	outputCopy.sum = sumResult
+	outputCopy.sum = sum
 	outputCopy.output = sumString
 	outputCopy.lastOperator = operatorArray[0]
 	outputCopy.lastSecondOperand = operatorArray[1]
