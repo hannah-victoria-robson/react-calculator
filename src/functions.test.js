@@ -70,6 +70,7 @@ it('returns an object with values set to 0', () => {
 			output: '33',
 			lastOperator: 'add',
 			lastSecondOperand: '2',
+',
 		})
 	).toEqual({
 		firstOperand: '0',
@@ -79,6 +80,7 @@ it('returns an object with values set to 0', () => {
 		output: '0',
 		lastOperator: '0',
 		lastSecondOperand: '0',
+		fontSize: '50px',
 	})
 })
 
@@ -248,7 +250,7 @@ it('repeats previous operator and secondOperand when the equals button is clicke
 		lastSecondOperand: '2',
 	})
 })
-
+test.todo('write tests for runCalculation')
 test.todo('write tests for setSum')
 test.todo('write tests for handleDecimal')
 test.todo('write tests for toggleNumber')

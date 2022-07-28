@@ -49,17 +49,20 @@ function handleDecimal(output) {
 		const decimal = number + '.'
 		outputCopy.secondOperand = decimal
 		outputCopy.output = decimal
-		return outputCopy
+		const finalOutput = setFontSize(output)
+		return finalOutput
 	} else if (output.secondOperand === '0' && output.operator === '0') {
 		const number = outputCopy.firstOperand
 		const decimal = number + '.'
 		outputCopy.firstOperand = decimal
 		outputCopy.output = decimal
-		return outputCopy
+		const finalOutput = setFontSize(output)
+		return finalOutput
 	} else if (output.secondOperand === '0' && output.operator !== '0') {
 		outputCopy.secondOperand = '0.'
 		outputCopy.output = '0.'
-		return outputCopy
+		const finalOutput = setFontSize(output)
+		return finalOutput
 	}
 }
 
@@ -79,7 +82,8 @@ function handlePercent(output) {
 	outputCopy.sum = decimal[0]
 	outputCopy.firstOperand = '' + decimal[0]
 	outputCopy.output = '' + decimal[0]
-	return outputCopy
+	const finalOutput = setFontSize(output)
+	return finalOutput
 }
 
 function toggleNumber(output) {
@@ -90,7 +94,8 @@ function toggleNumber(output) {
 		const newOutput = numArray.join('')
 		output.firstOperand = newOutput
 		output.output = newOutput
-		return output
+		const finalOutput = setFontSize(output)
+		return finalOutput
 	}
 }
 
@@ -119,7 +124,8 @@ function handleNumbers(output, newInput) {
 		const currentNumber = output.firstOperand + newInput
 		outputCopy.firstOperand = currentNumber
 		outputCopy.output = currentNumber
-		return outputCopy
+		const finalOutput = setFontSize(outputCopy)
+		return finalOutput
 	}
 	if (
 		output.firstOperand !== '0' &&
@@ -138,7 +144,8 @@ function handleNumbers(output, newInput) {
 		const currentNumber = output.secondOperand + newInput
 		outputCopy.secondOperand = currentNumber
 		outputCopy.output = currentNumber
-		return outputCopy
+		const finalOutput = setFontSize(outputCopy)
+		return finalOutput
 	} else {
 		console.log('error')
 	}
@@ -236,7 +243,20 @@ function setSum(output, sum) {
 	outputCopy.output = sumString
 	outputCopy.lastOperator = operatorArray[0]
 	outputCopy.lastSecondOperand = operatorArray[1]
-	return outputCopy
+	const finalOutput = setFontSize(outputCopy)
+	return finalOutput
+}
+
+function setFontSize(output) {
+	const outputData = output.firstOperand
+	const length = outputData.length
+	if (length > 8) {
+		const minus = length * 1.5
+		const fontSize = 50 - minus
+		console.log(fontSize)
+		output.fontSize = fontSize + 'px'
+	}
+	return output
 }
 
 function clearOutput(output) {
@@ -248,6 +268,7 @@ function clearOutput(output) {
 	outputCopy.output = '0'
 	outputCopy.lastOperator = '0'
 	outputCopy.lastSecondOperand = '0'
+	outputCopy.fontSize = '50px'
 	return outputCopy
 }
 

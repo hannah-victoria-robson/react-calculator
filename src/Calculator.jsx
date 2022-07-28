@@ -18,15 +18,27 @@ function Calculator() {
 		output: '0',
 		lastOperator: '0',
 		lastSecondOperand: '0',
+		fontSize: '50px',
 	})
 
+	// let fontSize = '50px'
+
+	// function setFontSize(output) {
+	// 	const outputData = output.firstOperand
+	// 	const length = outputData.length
+	// 	if (length > 7) {
+	// 		fontSize = 50 - length
+	// 		console.log(fontSize)
+	// 		output.fontSize = fontSize
+	// 	}
+	// 	return output
+	// }
 	function setNewOutput(output) {
 		setOutput(output)
-		console.log('add logic to handle undefined')
+		// console.log('add logic to handle undefined')
 	}
 	function handleClick(event) {
 		const newInput = event.currentTarget.value
-
 		if (isNumber(newInput)) {
 			const numbers = handleNumbers(output, newInput)
 			// if (numbers.output === 'undefined' || numbers === 'undefined') {
@@ -51,7 +63,9 @@ function Calculator() {
 							<div className="yellow"></div>
 							<div className="green"></div>
 						</div>
-						<output className="output">{output.output}</output>
+						<output className="output" style={{ fontSize: output.fontSize }}>
+							{output.output}
+						</output>
 						<button className="AC top" value={'AC'} onClick={handleClick}>
 							AC
 						</button>
