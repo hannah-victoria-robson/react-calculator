@@ -70,7 +70,6 @@ it('returns an object with values set to 0', () => {
 			output: '33',
 			lastOperator: 'add',
 			lastSecondOperand: '2',
-',
 		})
 	).toEqual({
 		firstOperand: '0',

@@ -18,7 +18,8 @@ function Calculator() {
 		output: '0',
 		lastOperator: '0',
 		lastSecondOperand: '0',
-		fontSize: '50px',
+		fontSize: '45px',
+		numberLength: [],
 	})
 
 	// let fontSize = '50px'

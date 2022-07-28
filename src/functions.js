@@ -250,9 +250,41 @@ function setSum(output, sum) {
 function setFontSize(output) {
 	const outputData = output.firstOperand
 	const length = outputData.length
-	if (length > 8) {
-		const minus = length * 1.5
-		const fontSize = 50 - minus
+	if (length > 40 && length <= 65) {
+		const extraLength = length - 9
+		const remove = 50 - extraLength
+		console.log('remove: ' + remove)
+		const minus = remove * 0.4
+		const fontSize = minus
+		console.log('minus: ' + minus)
+
+		console.log(fontSize)
+		output.fontSize = fontSize + 'px'
+	} else if (length > 20 && length <= 40) {
+		const extraLength = length - 9
+		const remove = 50 - extraLength
+		console.log('remove: ' + remove)
+		const minus = remove * 0.5
+		const fontSize = minus
+		console.log('minus: ' + minus)
+
+		console.log(fontSize)
+		output.fontSize = fontSize + 'px'
+	} else if (length > 12 && length <= 30) {
+		const extraLength = length - 9
+		const remove = 50 - extraLength
+		console.log('remove: ' + remove)
+		const minus = remove * 0.6
+		const fontSize = minus
+		console.log('minus: ' + minus)
+
+		console.log(fontSize)
+		output.fontSize = fontSize + 'px'
+	} else if (length > 9) {
+		const extraLength = length - 9
+		const remove = 50 - extraLength
+		const minus = remove * 0.7
+		const fontSize = minus
 		console.log(fontSize)
 		output.fontSize = fontSize + 'px'
 	}
