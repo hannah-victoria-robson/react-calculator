@@ -22,12 +22,7 @@ function Calculator() {
 
 	function setNewOutput(output) {
 		setOutput(output)
-		console.log(
-			'last operator: ' +
-				output.lastOperator +
-				'. last Second number: ' +
-				output.lastSecondOperand
-		)
+		console.log('add logic to handle undefined')
 	}
 	function handleClick(event) {
 		const newInput = event.currentTarget.value

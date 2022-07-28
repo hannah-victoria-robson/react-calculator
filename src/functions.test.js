@@ -21,6 +21,8 @@ it('sets operator to input', () => {
 				secondOperand: '0',
 				sum: 0,
 				output: '0',
+				lastOperator: '0',
+				lastSecondOperand: '0',
 			},
 			'add'
 		)
@@ -30,6 +32,8 @@ it('sets operator to input', () => {
 		secondOperand: '0',
 		sum: 0,
 		output: '0',
+		lastOperator: '0',
+		lastSecondOperand: '0',
 	})
 	// expect(handleOperators()).toHaveBeenCalled()
 })
@@ -64,6 +68,8 @@ it('returns an object with values set to 0', () => {
 			secondOperand: '321',
 			sum: 33,
 			output: '33',
+			lastOperator: 'add',
+			lastSecondOperand: '2',
 		})
 	).toEqual({
 		firstOperand: '0',
@@ -71,6 +77,8 @@ it('returns an object with values set to 0', () => {
 		secondOperand: '0',
 		sum: 0,
 		output: '0',
+		lastOperator: '0',
+		lastSecondOperand: '0',
 	})
 })
 
@@ -85,6 +93,8 @@ it('replaces 0 with a number for first number entered', () => {
 				secondOperand: '0',
 				sum: 0,
 				output: '0',
+				lastOperator: '0',
+				lastSecondOperand: '0',
 			},
 			'1'
 		)
@@ -94,6 +104,8 @@ it('replaces 0 with a number for first number entered', () => {
 		secondOperand: '0',
 		sum: 0,
 		output: '1',
+		lastOperator: '0',
+		lastSecondOperand: '0',
 	})
 })
 
@@ -106,6 +118,8 @@ it('concats to first number if first number isnt 0', () => {
 				secondOperand: '0',
 				sum: 0,
 				output: '0',
+				lastOperator: '0',
+				lastSecondOperand: '0',
 			},
 			'1'
 		)
@@ -115,6 +129,8 @@ it('concats to first number if first number isnt 0', () => {
 		secondOperand: '0',
 		sum: 0,
 		output: '11',
+		lastOperator: '0',
+		lastSecondOperand: '0',
 	})
 })
 it('replaces second number 0 with a number for first number entered', () => {
@@ -126,6 +142,8 @@ it('replaces second number 0 with a number for first number entered', () => {
 				secondOperand: '0',
 				sum: 0,
 				output: '0',
+				lastOperator: '0',
+				lastSecondOperand: '0',
 			},
 			'1'
 		)
@@ -135,6 +153,8 @@ it('replaces second number 0 with a number for first number entered', () => {
 		secondOperand: '1',
 		sum: 0,
 		output: '1',
+		lastOperator: '0',
+		lastSecondOperand: '0',
 	})
 })
 it('concats to second number if second number isnt 0', () => {
@@ -146,6 +166,8 @@ it('concats to second number if second number isnt 0', () => {
 				secondOperand: '0',
 				sum: 0,
 				output: '0',
+				lastOperator: '0',
+				lastSecondOperand: '0',
 			},
 			'1'
 		)
@@ -155,6 +177,8 @@ it('concats to second number if second number isnt 0', () => {
 		secondOperand: '1',
 		sum: 0,
 		output: '1',
+		lastOperator: '0',
+		lastSecondOperand: '0',
 	})
 })
 
@@ -166,6 +190,8 @@ it('adds 2 and 2, sets sum and output to 4', () => {
 			secondOperand: '2',
 			sum: 0,
 			output: '2',
+			lastOperator: '0',
+			lastSecondOperand: '0',
 		})
 	).toEqual({
 		firstOperand: '4',
@@ -173,6 +199,8 @@ it('adds 2 and 2, sets sum and output to 4', () => {
 		secondOperand: '0',
 		sum: 4,
 		output: '4',
+		lastOperator: 'add',
+		lastSecondOperand: '2',
 	})
 })
 it('multiples 2 by 3, sets sum and output to 6', () => {
@@ -183,6 +211,8 @@ it('multiples 2 by 3, sets sum and output to 6', () => {
 			secondOperand: '3',
 			sum: 0,
 			output: '2',
+			lastOperator: '0',
+			lastSecondOperand: '0',
 		})
 	).toEqual({
 		firstOperand: '6',
@@ -190,9 +220,36 @@ it('multiples 2 by 3, sets sum and output to 6', () => {
 		secondOperand: '0',
 		sum: 6,
 		output: '6',
+		lastOperator: 'multiply',
+		lastSecondOperand: '3',
+	})
+})
+it('repeats previous operator and secondOperand when the equals button is clicked consecutively', () => {
+	expect(
+		calculateSum(
+			{
+				firstOperand: '3',
+				operator: '0',
+				secondOperand: '0',
+				sum: 3,
+				output: '3',
+				lastOperator: 'add',
+				lastSecondOperand: '2',
+			},
+			'equals'
+		)
+	).toEqual({
+		firstOperand: '5',
+		operator: '0',
+		secondOperand: '0',
+		sum: 5,
+		output: '5',
+		lastOperator: 'add',
+		lastSecondOperand: '2',
 	})
 })
 
+test.todo('write tests for setSum')
 test.todo('write tests for handleDecimal')
 test.todo('write tests for toggleNumber')
 test.todo('write tests for handlePercent')

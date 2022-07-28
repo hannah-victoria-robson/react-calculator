@@ -1,3 +1,14 @@
+// when you click a number, then operator, then equals, it applies the operator as if it is the same number
+// e.g. 9 + =
+// ends up as 9+9 =
+//  then each = will add 9
+
+// number then equals just maintains the current number
+// 9 =
+//  it will just be 9
+
+// undefined needs to show ERROR
+
 function isNumber(newInput) {
 	const numberInput = Number(newInput)
 	if (isNaN(numberInput)) {
@@ -192,6 +203,7 @@ function calculateSum(output, input) {
 	return finalOutput
 }
 
+// limit decimals to 16 (1.111111111111111)
 function setSum(output, sum) {
 	const outputCopy = { ...output }
 	const sumResult = sum[0]
@@ -222,6 +234,8 @@ function clearOutput(output) {
 	outputCopy.firstOperand = '0'
 	outputCopy.operator = '0'
 	outputCopy.output = '0'
+	outputCopy.lastOperator = '0'
+	outputCopy.lastSecondOperand = '0'
 	return outputCopy
 }
 
