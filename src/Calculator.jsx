@@ -16,24 +16,25 @@ function Calculator() {
 		secondOperand: '0',
 		sum: 0,
 		output: '0',
+		lastOperator: '0',
+		lastSecondOperand: '0',
+		fontSize: '45px',
+		// numberLength: [],
 	})
 
 	function setNewOutput(output) {
-		setOutput(output)
-		// return null
+		const outputCopy = { ...output }
+		setOutput(outputCopy)
 	}
+
 	function handleClick(event) {
 		const newInput = event.currentTarget.value
-		console.log(newInput)
-
 		if (isNumber(newInput)) {
 			const numbers = handleNumbers(output, newInput)
 			setNewOutput(numbers)
-			// return null
 		} else {
 			const operators = handleOperators(output, newInput)
 			setNewOutput(operators)
-			// return null
 		}
 	}
 
@@ -47,7 +48,9 @@ function Calculator() {
 							<div className="yellow"></div>
 							<div className="green"></div>
 						</div>
-						<output className="output">{output.output}</output>
+						<output className="output" style={{ fontSize: output.fontSize }}>
+							{output.output}
+						</output>
 						<button className="AC top" value={'AC'} onClick={handleClick}>
 							AC
 						</button>
