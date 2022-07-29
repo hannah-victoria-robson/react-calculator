@@ -35,7 +35,6 @@ it('sets operator to input', () => {
 		lastOperator: '0',
 		lastSecondOperand: '0',
 	})
-	// expect(handleOperators()).toHaveBeenCalled()
 })
 
 // test handle operators

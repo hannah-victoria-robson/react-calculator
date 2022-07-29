@@ -1,4 +1,5 @@
 // undefined needs to show ERROR
+// add handleUndefined func
 
 function isNumber(newInput) {
 	const numberInput = Number(newInput)

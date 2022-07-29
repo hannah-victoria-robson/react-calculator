@@ -24,13 +24,6 @@ function Calculator() {
 
 	function setNewOutput(output) {
 		const outputCopy = { ...output }
-
-		// if (outputCopy.output === 'undefined') {
-		// 	outputCopy.output = 'error'
-		// 	setOutput(outputCopy)
-		// } else {
-		// 	setOutput(outputCopy)
-		// }
 		setOutput(outputCopy)
 	}
 
