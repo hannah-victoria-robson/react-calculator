@@ -45,19 +45,19 @@ function handleDecimal(output) {
 		const decimal = number + '.'
 		outputCopy.secondOperand = decimal
 		outputCopy.output = decimal
-		const finalOutput = setFontSize(output)
+		const finalOutput = setFontSize(outputCopy)
 		return finalOutput
 	} else if (output.secondOperand === '0' && output.operator === '0') {
 		const number = outputCopy.firstOperand
 		const decimal = number + '.'
 		outputCopy.firstOperand = decimal
 		outputCopy.output = decimal
-		const finalOutput = setFontSize(output)
+		const finalOutput = setFontSize(outputCopy)
 		return finalOutput
 	} else if (output.secondOperand === '0' && output.operator !== '0') {
 		outputCopy.secondOperand = '0.'
 		outputCopy.output = '0.'
-		const finalOutput = setFontSize(output)
+		const finalOutput = setFontSize(outputCopy)
 		return finalOutput
 	}
 }
@@ -66,7 +66,7 @@ function handlePercent(output) {
 	const outputCopy = { ...output }
 	const decimal = []
 	if (output.secondOperand !== '0') {
-		const newOutput = calculateSum(output)
+		const newOutput = calculateSum(outputCopy)
 		const outputSum = newOutput.sum
 		const calc = outputSum / 100
 		decimal.push(calc)
@@ -78,7 +78,7 @@ function handlePercent(output) {
 	outputCopy.sum = decimal[0]
 	outputCopy.firstOperand = '' + decimal[0]
 	outputCopy.output = '' + decimal[0]
-	const finalOutput = setFontSize(output)
+	const finalOutput = setFontSize(outputCopy)
 	return finalOutput
 }
 
@@ -212,10 +212,16 @@ function calculateSum(output) {
 					parseFloat(outputCopy.secondOperand)
 			)
 		}
-		const decimalSum = sum[0].toFixed(15)
-		const finalSum = parseFloat(decimalSum)
-		const finalOutput = setSum(outputCopy, finalSum)
-		return finalOutput
+		if (sum[0] === 'undefined') {
+			const error = clearOutput(outputCopy)
+			error.output = 'error'
+			return error
+		} else {
+			const decimalSum = sum[0].toFixed(15)
+			const finalSum = parseFloat(decimalSum)
+			const finalOutput = setSum(outputCopy, finalSum)
+			return finalOutput
+		}
 	}
 }
 
@@ -243,15 +249,13 @@ function setSum(output, sum) {
 }
 
 function setFontSize(output) {
-	const outputData = output.firstOperand
+	const outputData = output.output
 	const length = outputData.length
 	if (length > 40 && length <= 65) {
 		const extraLength = length - 9
 		const remove = 50 - extraLength
 		const minus = remove * 0.4
 		const fontSize = minus
-
-		console.log(fontSize)
 		output.fontSize = fontSize + 'px'
 	} else if (length > 20 && length <= 40) {
 		const extraLength = length - 9
@@ -271,6 +275,8 @@ function setFontSize(output) {
 		const minus = remove * 0.7
 		const fontSize = minus
 		output.fontSize = fontSize + 'px'
+	} else if (output.output === 'undefined') {
+		output.fontSize = '50px'
 	}
 	return output
 }

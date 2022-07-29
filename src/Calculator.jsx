@@ -23,21 +23,24 @@ function Calculator() {
 	})
 
 	function setNewOutput(output) {
-		setOutput(output)
-		// console.log('add logic to handle undefined')
+		const outputCopy = { ...output }
+
+		// if (outputCopy.output === 'undefined') {
+		// 	outputCopy.output = 'error'
+		// 	setOutput(outputCopy)
+		// } else {
+		// 	setOutput(outputCopy)
+		// }
+		setOutput(outputCopy)
 	}
+
 	function handleClick(event) {
 		const newInput = event.currentTarget.value
 		if (isNumber(newInput)) {
 			const numbers = handleNumbers(output, newInput)
-			// if (numbers.output === 'undefined' || numbers === 'undefined') {
-			// 	numbers.output = 'ERROR'
-			// 	setNewOutput(numbers)
-			// }
 			setNewOutput(numbers)
 		} else {
 			const operators = handleOperators(output, newInput)
-
 			setNewOutput(operators)
 		}
 	}
