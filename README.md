@@ -1,5 +1,4 @@
 # Calc-you-later 
-![Uploading Screen Shot 2022-07-29 at 3.07.17 PM.png…]()
 
 This project is a calculator based on the design and functionality of the mac desktop calculator.
 
