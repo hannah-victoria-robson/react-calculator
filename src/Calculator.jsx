@@ -19,6 +19,7 @@ function Calculator() {
 		lastOperator: '0',
 		lastSecondOperand: '0',
 		fontSize: '55px',
+		clearButton: 'AC',
 	})
 
 	function setNewOutput(output) {
@@ -56,7 +57,7 @@ function Calculator() {
 							</span>
 						</output>
 						<button className="AC top" value={'AC'} onClick={handleClick}>
-							AC
+							{output.clearButton}
 						</button>
 						<button
 							className="number-toggle top"

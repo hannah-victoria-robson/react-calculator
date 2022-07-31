@@ -93,6 +93,11 @@ function toggleNumber(output) {
 		output.output = newOutput
 		const finalOutput = setFontSize(output)
 		return finalOutput
+	} else if (output.firstOperand === '0') {
+		return output
+	} else {
+		output.output = 'ERROR'
+		return output
 	}
 }
 
@@ -113,6 +118,7 @@ function setOperator(output, newInput) {
 function handleNumbers(output, newInput) {
 	const outputCopy = { ...output }
 	if (output.firstOperand === '0') {
+		outputCopy.clearButton = 'C'
 		outputCopy.firstOperand = newInput
 		outputCopy.output = newInput
 		return outputCopy
@@ -291,7 +297,8 @@ function clearOutput(output) {
 	outputCopy.output = '0'
 	outputCopy.lastOperator = '0'
 	outputCopy.lastSecondOperand = '0'
-	outputCopy.fontSize = '50px'
+	outputCopy.fontSize = '55px'
+	outputCopy.clearButton = 'AC'
 	return outputCopy
 }
 
