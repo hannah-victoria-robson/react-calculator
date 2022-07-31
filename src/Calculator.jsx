@@ -18,8 +18,7 @@ function Calculator() {
 		output: '0',
 		lastOperator: '0',
 		lastSecondOperand: '0',
-		fontSize: '45px',
-		// numberLength: [],
+		fontSize: '55px',
 	})
 
 	function setNewOutput(output) {
@@ -48,8 +47,13 @@ function Calculator() {
 							<div className="yellow"></div>
 							<div className="green"></div>
 						</div>
-						<output className="output" style={{ fontSize: output.fontSize }}>
-							{output.output}
+						<output className="output">
+							<span
+								className="output-text"
+								style={{ fontSize: output.fontSize }}
+							>
+								{output.output}
+							</span>
 						</output>
 						<button className="AC top" value={'AC'} onClick={handleClick}>
 							AC
