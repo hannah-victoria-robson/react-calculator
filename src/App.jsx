@@ -15,7 +15,7 @@ function App() {
 			<main>
 				<div className="calc-parent">
 					<>{/* <section className="calc-frame" id="border"></section> */}</>
-					<Draggable defaultPosition={{ x: -125, y: 200 }}>
+					<Draggable handle="#handle" defaultPosition={{ x: -125, y: 200 }}>
 						<div className="box">
 							<Calculator id="calc" />
 						</div>

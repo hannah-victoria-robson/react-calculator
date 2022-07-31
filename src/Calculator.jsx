@@ -48,7 +48,7 @@ function Calculator() {
 							<div className="yellow"></div>
 							<div className="green"></div>
 						</div>
-						<output className="output">
+						<output className="output" id="handle">
 							<span
 								className="output-text"
 								style={{ fontSize: output.fontSize }}
