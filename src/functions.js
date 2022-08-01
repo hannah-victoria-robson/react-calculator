@@ -258,28 +258,46 @@ function setSum(output, sum) {
 function setFontSize(output) {
 	const outputData = output.output
 	const length = outputData.length
-	if (length > 40 && length <= 65) {
-		const extraLength = length - 9
-		const remove = 50 - extraLength
-		const minus = remove * 0.4
-		const fontSize = minus
-		output.fontSize = fontSize + 'px'
-	} else if (length > 20 && length <= 40) {
-		const extraLength = length - 9
-		const remove = 50 - extraLength
-		const minus = remove * 0.5
-		const fontSize = minus
-		output.fontSize = fontSize + 'px'
-	} else if (length > 12 && length <= 30) {
+	if (length > 22 && length) {
 		const extraLength = length - 9
 		const remove = 50 - extraLength
 		const minus = remove * 0.6
 		const fontSize = minus
 		output.fontSize = fontSize + 'px'
-	} else if (length > 9) {
+	} else if (length > 19 && length <= 22) {
+		const extraLength = length - 9
+		const remove = 50 - extraLength
+		const minus = remove * 0.63
+		const fontSize = minus
+		output.fontSize = fontSize + 'px'
+	} else if (length > 17 && length <= 19) {
 		const extraLength = length - 9
 		const remove = 50 - extraLength
 		const minus = remove * 0.7
+		const fontSize = minus
+		output.fontSize = fontSize + 'px'
+	} else if (length > 15 && length <= 17) {
+		const extraLength = length - 9
+		const remove = 50 - extraLength
+		const minus = remove * 0.7
+		const fontSize = minus
+		output.fontSize = fontSize + 'px'
+	} else if (length > 13 && length <= 15) {
+		const extraLength = length - 9
+		const remove = 50 - extraLength
+		const minus = remove * 0.75
+		const fontSize = minus
+		output.fontSize = fontSize + 'px'
+	} else if (length > 10 && length <= 13) {
+		const extraLength = length - 9
+		const remove = 50 - extraLength
+		const minus = remove * 0.8
+		const fontSize = minus
+		output.fontSize = fontSize + 'px'
+	} else if (length > 7) {
+		const extraLength = length - 9
+		const remove = 50 - extraLength
+		const minus = remove * 0.89
 		const fontSize = minus
 		output.fontSize = fontSize + 'px'
 	} else if (output.output === 'undefined') {

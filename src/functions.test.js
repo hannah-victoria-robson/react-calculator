@@ -78,7 +78,8 @@ it('returns an object with values set to 0', () => {
 		output: '0',
 		lastOperator: '0',
 		lastSecondOperand: '0',
-		fontSize: '50px',
+		fontSize: '55px',
+		clearButton: 'AC',
 	})
 })
 
@@ -95,6 +96,8 @@ it('replaces 0 with a number for first number entered', () => {
 				output: '0',
 				lastOperator: '0',
 				lastSecondOperand: '0',
+				fontSize: '55px',
+				clearButton: 'AC',
 			},
 			'1'
 		)
@@ -106,6 +109,8 @@ it('replaces 0 with a number for first number entered', () => {
 		output: '1',
 		lastOperator: '0',
 		lastSecondOperand: '0',
+		fontSize: '55px',
+		clearButton: 'C',
 	})
 })
 
