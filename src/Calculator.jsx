@@ -18,13 +18,21 @@ function Calculator() {
 		output: '0',
 		lastOperator: '0',
 		lastSecondOperand: '0',
-		fontSize: '45px',
-		// numberLength: [],
+		fontSize: '55px',
+		clearButton: 'AC',
 	})
 
 	function setNewOutput(output) {
 		const outputCopy = { ...output }
-		setOutput(outputCopy)
+		if (outputCopy.output === 'NaN') {
+			outputCopy.output = 'ERROR'
+			return outputCopy
+		} else if (typeof outputCopy.sum !== 'number') {
+			outputCopy.output = 'ERROR'
+			return outputCopy
+		} else {
+			setOutput(outputCopy)
+		}
 	}
 
 	function handleClick(event) {
@@ -48,11 +56,16 @@ function Calculator() {
 							<div className="yellow"></div>
 							<div className="green"></div>
 						</div>
-						<output className="output" style={{ fontSize: output.fontSize }}>
-							{output.output}
+						<output className="output" id="handle">
+							<span
+								className="output-text"
+								style={{ fontSize: output.fontSize }}
+							>
+								{output.output}
+							</span>
 						</output>
 						<button className="AC top" value={'AC'} onClick={handleClick}>
-							AC
+							{output.clearButton}
 						</button>
 						<button
 							className="number-toggle top"
@@ -62,38 +75,42 @@ function Calculator() {
 							+/-
 						</button>
 						<button
-							className="percent top"
+							className="percent top icon"
 							value={'percent'}
 							onClick={handleClick}
 						>
 							<RiPercentLine />
 						</button>
 						<button
-							className="divide right"
+							className="divide right icon"
 							value={'divide'}
 							onClick={handleClick}
 						>
 							<RiDivideLine />
 						</button>
 						<button
-							className="multiply right"
+							className="multiply right icon"
 							value={'multiply'}
 							onClick={handleClick}
 						>
 							<RiCloseLine />
 						</button>
 						<button
-							className="subtract right"
+							className="subtract right icon"
 							value={'subtract'}
 							onClick={handleClick}
 						>
 							<RiSubtractLine />
 						</button>
-						<button className="add right" value={'add'} onClick={handleClick}>
+						<button
+							className="add right icon"
+							value={'add'}
+							onClick={handleClick}
+						>
 							<RiAddLine />
 						</button>
 						<button
-							className="equals right"
+							className="equals right icon"
 							value={'equals'}
 							onClick={handleClick}
 						>
