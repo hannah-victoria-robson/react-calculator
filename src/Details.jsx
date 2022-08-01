@@ -7,7 +7,13 @@ function Details() {
 				<details className="details-item">
 					<summary>Project Details</summary>
 
-					<p>Stack used: HTML, CSS, React, Jest</p>
+					<p>
+						Stack used: HTML, CSS, React, <a href="https://jestjs.io/"> Jest</a>
+						,&nbsp;
+						<a href="https://www.npmjs.com/package/react-draggable">
+							Draggable
+						</a>
+					</p>
 
 					<p>
 						Design: The calculator design is based off of the mac desktop
@@ -16,9 +22,16 @@ function Details() {
 					</p>
 					<p>
 						Functionality: The functionality of this calculator is also based on
-						the mac desktop calculator app
+						the mac desktop calculator app.
 					</p>
-					{/* <p>Stack used: HTML, CSS, React, Jest</p> */}
+					<p>
+						<a href="https://github.com/hannah-victoria-robson/react-calculator">
+							Project repo on Github
+						</a>
+					</p>
+					<p>Tests:</p>
+					<p>Roadblocks:</p>
+					<p>Future sprints:</p>
 				</details>
 			</section>
 		</>
