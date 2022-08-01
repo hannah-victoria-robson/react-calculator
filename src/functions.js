@@ -1,6 +1,3 @@
-// undefined needs to show ERROR
-// add handleUndefined func
-
 function isNumber(newInput) {
 	const numberInput = Number(newInput)
 	if (isNaN(numberInput)) {
@@ -42,14 +39,18 @@ function handleOperators(output, newInput) {
 function handleDecimal(output) {
 	const outputCopy = { ...output }
 	const lastCharacter = outputCopy.output
-	const decimal = lastCharacter.substr(-1)
-	if (decimal === '.') {
+	const checkLastChar = lastCharacter.substr(-1)
+	if (checkLastChar === '.') {
+		outputCopy.lastOperator = 'decimal'
+		outputCopy.operator = '0'
 		return outputCopy
 	} else if (output.secondOperand !== '0') {
 		const number = output.secondOperand
 		const decimal = number + '.'
 		outputCopy.secondOperand = decimal
 		outputCopy.output = decimal
+		outputCopy.lastOperator = 'decimal'
+		outputCopy.operator = '0'
 		const finalOutput = setFontSize(outputCopy)
 		return finalOutput
 	} else if (output.secondOperand === '0' && output.operator === '0') {
@@ -57,11 +58,15 @@ function handleDecimal(output) {
 		const decimal = number + '.'
 		outputCopy.firstOperand = decimal
 		outputCopy.output = decimal
+		outputCopy.lastOperator = 'decimal'
+		outputCopy.operator = '0'
 		const finalOutput = setFontSize(outputCopy)
 		return finalOutput
 	} else if (output.secondOperand === '0' && output.operator !== '0') {
 		outputCopy.secondOperand = '0.'
 		outputCopy.output = '0.'
+		outputCopy.lastOperator = 'decimal'
+		outputCopy.operator = '0'
 		const finalOutput = setFontSize(outputCopy)
 		return finalOutput
 	}
@@ -83,24 +88,25 @@ function handlePercent(output) {
 	outputCopy.sum = decimal[0]
 	outputCopy.firstOperand = '' + decimal[0]
 	outputCopy.output = '' + decimal[0]
+	outputCopy.operator = '0'
+	outputCopy.lastOperator = 'percent'
 	const finalOutput = setFontSize(outputCopy)
 	return finalOutput
 }
 
 function toggleNumber(output) {
-	if (output.firstOperand !== '0' && output.operator === '0') {
-		const number = output.firstOperand
-		const numArray = number.split(',')
-		numArray[0] === '-' ? numArray.shift() : numArray.unshift('-')
-		const newOutput = numArray.join('')
-		output.firstOperand = newOutput
-		output.output = newOutput
-		const finalOutput = setFontSize(output)
-		return finalOutput
-	} else if (output.firstOperand === '0') {
+	const sum = output.sum
+	if (Math.sign(sum) === 1 || Math.sign(sum) === -1) {
+		const subtract = sum * 2
+		const newSum = sum - subtract
+		const newSumString = '' + newSum
+		output.firstOperand = newSumString
+		output.sum = newSum
+		output.output = newSumString
+		output.operator = '0'
+		output.lastOperator = 'toggle'
 		return output
-	} else {
-		output.output = 'ERROR'
+	} else if (Math.sign(sum) === 0) {
 		return output
 	}
 }
@@ -198,41 +204,38 @@ function calculateSum(output) {
 	) {
 		return outputCopy
 	}
+}
+function runCalculation(output) {
+	const outputCopy = { ...output }
+	let sum = []
+	if (outputCopy.operator === 'add') {
+		sum.push(
+			parseFloat(outputCopy.firstOperand) + parseFloat(outputCopy.secondOperand)
+		)
+	} else if (outputCopy.operator === 'subtract') {
+		sum.push(
+			parseFloat(outputCopy.firstOperand) - parseFloat(outputCopy.secondOperand)
+		)
+	} else if (outputCopy.operator === 'divide') {
+		sum.push(
+			parseFloat(outputCopy.firstOperand) / parseFloat(outputCopy.secondOperand)
+		)
+	} else if (outputCopy.operator === 'multiply') {
+		sum.push(
+			parseFloat(outputCopy.firstOperand) * parseFloat(outputCopy.secondOperand)
+		)
+	}
+	if (sum[0] === 'undefined') {
+		const error = clearOutput(outputCopy)
+		error.output = 'error'
+		return error
+	} else {
+		const decimalSum = sum[0].toFixed(15)
+		const finalSum = parseFloat(decimalSum)
+		const finalOutput = setSum(outputCopy, finalSum)
+		console.log()
 
-	function runCalculation(output) {
-		const outputCopy = { ...output }
-		let sum = []
-		if (outputCopy.operator === 'add') {
-			sum.push(
-				parseFloat(outputCopy.firstOperand) +
-					parseFloat(outputCopy.secondOperand)
-			)
-		} else if (outputCopy.operator === 'subtract') {
-			sum.push(
-				parseFloat(outputCopy.firstOperand) -
-					parseFloat(outputCopy.secondOperand)
-			)
-		} else if (outputCopy.operator === 'divide') {
-			sum.push(
-				parseFloat(outputCopy.firstOperand) /
-					parseFloat(outputCopy.secondOperand)
-			)
-		} else if (outputCopy.operator === 'multiply') {
-			sum.push(
-				parseFloat(outputCopy.firstOperand) *
-					parseFloat(outputCopy.secondOperand)
-			)
-		}
-		if (sum[0] === 'undefined') {
-			const error = clearOutput(outputCopy)
-			error.output = 'error'
-			return error
-		} else {
-			const decimalSum = sum[0].toFixed(15)
-			const finalSum = parseFloat(decimalSum)
-			const finalOutput = setSum(outputCopy, finalSum)
-			return finalOutput
-		}
+		return finalOutput
 	}
 }
 
@@ -249,6 +252,7 @@ function setSum(output, sum) {
 		: operatorArray.push(output.secondOperand)
 
 	outputCopy.firstOperand = sumString
+	console.log(outputCopy.firstOperand)
 	outputCopy.operator = '0'
 	outputCopy.secondOperand = '0'
 	outputCopy.sum = sum
@@ -260,9 +264,10 @@ function setSum(output, sum) {
 }
 
 function setFontSize(output) {
+	// const outputCopy = { ...output }
 	const outputData = output.output
 	const length = outputData.length
-	if (length > 22 && length) {
+	if (length > 22) {
 		const extraLength = length - 9
 		const remove = 50 - extraLength
 		const minus = remove * 0.6
@@ -298,15 +303,16 @@ function setFontSize(output) {
 		const minus = remove * 0.8
 		const fontSize = minus
 		output.fontSize = fontSize + 'px'
-	} else if (length > 7) {
+	} else if (length > 8 && length <= 10) {
 		const extraLength = length - 9
 		const remove = 50 - extraLength
 		const minus = remove * 0.89
 		const fontSize = minus
 		output.fontSize = fontSize + 'px'
 	} else if (output.output === 'undefined') {
-		output.fontSize = '50px'
+		output.fontSize = '55px'
 	}
+	// outputCopy.fontSize = '55px'
 	return output
 }
 
@@ -331,4 +337,10 @@ export {
 	handleNumbers,
 	calculateSum,
 	clearOutput,
+	runCalculation,
+	setFontSize,
+	setSum,
+	toggleNumber,
+	handlePercent,
+	handleDecimal,
 }
