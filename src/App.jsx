@@ -4,8 +4,8 @@ import Calculator from './Calculator'
 
 import Footer from './Footer'
 import Draggable from 'react-draggable'
-// import Details from './Details'
-import React, { useState } from 'react'
+import Details from './Details'
+import React from 'react'
 // import ReactDOM from 'react-dom'
 
 function App() {
@@ -14,14 +14,13 @@ function App() {
 			<Header />
 			<main>
 				<div className="calc-parent">
-					<>{/* <section className="calc-frame" id="border"></section> */}</>
-					<Draggable defaultPosition={{ x: -125, y: 200 }}>
+					<Draggable id="drag" handle="#handle" data-testid="draggable">
 						<div className="box">
 							<Calculator id="calc" />
 						</div>
 					</Draggable>
 				</div>
-				{/* <Details /> */}
+				<Details />
 			</main>
 			<Footer />{' '}
 		</div>

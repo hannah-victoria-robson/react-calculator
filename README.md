@@ -1,4 +1,4 @@
-# Calc-you-later 
+# Calc-you-later
 
 This project is a calculator based on the design and functionality of the mac desktop calculator.
 
@@ -21,5 +21,3 @@ Launches the test runner in the interactive watch mode.\
 ### `npm run build`
 
 Builds the app for production to the `build` folder.\
-
-
