@@ -1,7 +1,7 @@
 /* ---- Page heading ---- */
 header {
 	margin-top: 80px;
-	margin-bottom: 80px;
+	margin-bottom: 20px;
 }
 
 h1 {
@@ -35,7 +35,7 @@ h4 {
 /* ---- Parent element ---- */
 
 .calc-parent {
-	height: 400px;
+	height: 500px;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -220,20 +220,33 @@ button:active {
 }
 
 /* ---- Details ---- */
-/* .details-section {
-	position: absolute;
-	height: 100px;
-	bottom: 200px;
+.details-section {
+	width: 100%;
+	margin-bottom: 100px;
 	display: grid;
-	margin: auto;
-	width: 1000px;
-	grid-template: 1fr 1fr 1fr / 1fr 3fr 1fr;
+	grid-template: 1fr / 1fr 1fr 1fr;
+	grid-template-areas: 'one two three';
 }
 
 .details-item {
-	grid-area: 2 / 2 / 3 / 3;
-	background-color: #28c840;
-} */
+	text-align: center;
+	margin-top: 40px;
+	font-size: 20px;
+	color: #686169;
+	font-weight: bolder;
+	grid-area: 1 / 2 / 2 / 3;
+}
+
+h3 {
+	text-align: left;
+	margin-bottom: -20px;
+	font-size: 20px;
+}
+
+.details-item > p {
+	text-align: left;
+	font-size: 18px;
+}
 
 /* ---- Calculator Frame ---- */
 
@@ -249,8 +262,9 @@ button:active {
 
 /* ---- Footer ---- */
 .footer {
-	position: absolute;
-	bottom: 0px;
+	position: fixed;
+	height: 55px;
+	bottom: 0;
 	width: 100%;
 	background-color: #e8e8e8;
 }
@@ -274,3 +288,5 @@ a {
 a:hover {
 	color: #ff9e0b;
 }
+
+/* accordian */
