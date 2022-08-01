@@ -31,7 +31,7 @@ function Details() {
 					</p>
 					<p>Tests:</p>
 					<p>Roadblocks:</p>
-					<p>Future sprints:</p>
+					<p>Future sprints: </p>
 				</details>
 			</section>
 		</>
