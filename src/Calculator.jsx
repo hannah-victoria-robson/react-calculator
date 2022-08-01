@@ -24,7 +24,15 @@ function Calculator() {
 
 	function setNewOutput(output) {
 		const outputCopy = { ...output }
-		setOutput(outputCopy)
+		if (outputCopy.output === 'NaN') {
+			outputCopy.output = 'ERROR'
+			return outputCopy
+		} else if (typeof outputCopy.sum !== 'number') {
+			outputCopy.output = 'ERROR'
+			return outputCopy
+		} else {
+			setOutput(outputCopy)
+		}
 	}
 
 	function handleClick(event) {

@@ -41,7 +41,11 @@ function handleOperators(output, newInput) {
 
 function handleDecimal(output) {
 	const outputCopy = { ...output }
-	if (output.secondOperand !== '0') {
+	const lastCharacter = outputCopy.output
+	const decimal = lastCharacter.substr(-1)
+	if (decimal === '.') {
+		return outputCopy
+	} else if (output.secondOperand !== '0') {
 		const number = output.secondOperand
 		const decimal = number + '.'
 		outputCopy.secondOperand = decimal
