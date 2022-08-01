@@ -131,12 +131,15 @@ function handleNumbers(output, newInput) {
 		outputCopy.clearButton = 'C'
 		outputCopy.firstOperand = newInput
 		outputCopy.output = newInput
+		outputCopy.sum = parseFloat(newInput)
+
 		return outputCopy
 	}
 	if (output.firstOperand !== '0' && output.operator === '0') {
 		const currentNumber = output.firstOperand + newInput
 		outputCopy.firstOperand = currentNumber
 		outputCopy.output = currentNumber
+		outputCopy.sum = parseFloat(currentNumber)
 		const finalOutput = setFontSize(outputCopy)
 		return finalOutput
 	}
@@ -147,6 +150,8 @@ function handleNumbers(output, newInput) {
 	) {
 		outputCopy.secondOperand = newInput
 		outputCopy.output = newInput
+		outputCopy.sum = parseFloat(newInput)
+
 		return outputCopy
 	}
 	if (
@@ -157,6 +162,7 @@ function handleNumbers(output, newInput) {
 		const currentNumber = output.secondOperand + newInput
 		outputCopy.secondOperand = currentNumber
 		outputCopy.output = currentNumber
+		outputCopy.sum = parseFloat(currentNumber)
 		const finalOutput = setFontSize(outputCopy)
 		return finalOutput
 	} else {
@@ -233,8 +239,6 @@ function runCalculation(output) {
 		const decimalSum = sum[0].toFixed(15)
 		const finalSum = parseFloat(decimalSum)
 		const finalOutput = setSum(outputCopy, finalSum)
-		console.log()
-
 		return finalOutput
 	}
 }
@@ -252,7 +256,6 @@ function setSum(output, sum) {
 		: operatorArray.push(output.secondOperand)
 
 	outputCopy.firstOperand = sumString
-	console.log(outputCopy.firstOperand)
 	outputCopy.operator = '0'
 	outputCopy.secondOperand = '0'
 	outputCopy.sum = sum
