@@ -75,38 +75,42 @@ function Calculator() {
 							+/-
 						</button>
 						<button
-							className="percent top"
+							className="percent top icon"
 							value={'percent'}
 							onClick={handleClick}
 						>
 							<RiPercentLine />
 						</button>
 						<button
-							className="divide right"
+							className="divide right icon"
 							value={'divide'}
 							onClick={handleClick}
 						>
 							<RiDivideLine />
 						</button>
 						<button
-							className="multiply right"
+							className="multiply right icon"
 							value={'multiply'}
 							onClick={handleClick}
 						>
 							<RiCloseLine />
 						</button>
 						<button
-							className="subtract right"
+							className="subtract right icon"
 							value={'subtract'}
 							onClick={handleClick}
 						>
 							<RiSubtractLine />
 						</button>
-						<button className="add right" value={'add'} onClick={handleClick}>
+						<button
+							className="add right icon"
+							value={'add'}
+							onClick={handleClick}
+						>
 							<RiAddLine />
 						</button>
 						<button
-							className="equals right"
+							className="equals right icon"
 							value={'equals'}
 							onClick={handleClick}
 						>

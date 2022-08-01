@@ -193,6 +193,7 @@ h4 {
 }
 
 /*  ---- Buttons ---- */
+
 button {
 	background-color: #828081;
 	border: 0.6px solid rgb(77, 74, 76);
@@ -221,6 +222,10 @@ button:active {
 
 .right:active {
 	background-color: #cb7d08;
+}
+
+.icon {
+	padding-top: 10px;
 }
 
 /* ---- Details ---- */
