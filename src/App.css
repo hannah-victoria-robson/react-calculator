@@ -1,16 +1,12 @@
-.calc-container {
-	margin: 100px;
-}
-
 /* ---- Page heading ---- */
 header {
-	margin: 30px;
-	margin-bottom: 100px;
+	margin-top: 80px;
+	margin-bottom: 80px;
 }
 
 h1 {
 	text-align: center;
-	font-size: 50px;
+	font-size: 60px;
 	color: #ff9e0b;
 }
 
@@ -29,7 +25,7 @@ h4 {
 	position: absolute;
 	cursor: move;
 	color: black;
-	max-width: 215px;
+	max-width: 400px;
 	border-radius: 5px;
 	padding: 1em;
 	margin: auto;
@@ -39,12 +35,10 @@ h4 {
 /* ---- Parent element ---- */
 
 .calc-parent {
-	display: grid;
-	grid-template: 1fr / 1fr 360px 1fr;
-	background-color: #1c1c2a;
-	/* height: 500px; */
+	height: 400px;
+	display: flex;
+	justify-content: center;
 	align-items: center;
-	justify-items: center;
 }
 /* ---- Calculator grid ---- */
 .calculator {
@@ -59,8 +53,6 @@ h4 {
 	grid-template: repeat(1fr, 7) repeat(1fr, 5);
 	width: fit-content;
 	grid-area: 1 / 2 / 2 / 3;
-	/* position: relative;
-	right: 50px; */
 	z-index: 2;
 }
 
@@ -116,7 +108,6 @@ h4 {
 
 .output-text {
 	padding-right: 15px;
-	/* font-size: 55px; */
 }
 
 .AC {
@@ -271,9 +262,7 @@ li {
 li + li::before {
 	content: ' | ';
 }
-/* .footer-list-item {
-	/* padding: 3px; */
-*/ .built-by {
+.built-by {
 	color: #585858;
 }
 
