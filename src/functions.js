@@ -10,73 +10,62 @@ function isNumber(newInput) {
 
 function handleOperators(output, newInput) {
 	if (newInput === 'AC') {
-		const outputCopy = { ...output }
-		const clear = clearOutput(outputCopy)
+		const clear = clearOutput(output)
 		return clear
 	} else if (newInput === 'equals') {
-		const outputCopy = { ...output }
-		const sum = calculateSum(outputCopy, newInput)
+		const sum = calculateSum(output, newInput)
 		return sum
 	} else if (newInput === 'toggle') {
-		const outputCopy = { ...output }
-		const operator = toggleNumber(outputCopy)
+		const operator = toggleNumber(output)
 		return operator
 	} else if (newInput === 'percent') {
-		const outputCopy = { ...output }
-		const operator = handlePercent(outputCopy)
+		const operator = handlePercent(output)
 		return operator
 	} else if (newInput === 'decimal') {
-		const outputCopy = { ...output }
-		const operator = handleDecimal(outputCopy)
+		const operator = handleDecimal(output)
 		return operator
 	} else {
-		const outputCopy = { ...output }
-		const operator = setOperator(outputCopy, newInput)
+		const operator = setOperator(output, newInput)
 		return operator
 	}
 }
 
 function handleDecimal(output) {
-	const outputCopy = { ...output }
-	const lastCharacter = outputCopy.output
+	const lastCharacter = output.output
 	const checkLastChar = lastCharacter.substr(-1)
-	if (checkLastChar === '.') {
-		outputCopy.lastOperator = 'decimal'
-		outputCopy.operator = '0'
-		return outputCopy
+	const sum = output.sum
+	output.lastOperator = 'decimal'
+	output.operator = '0'
+	if (checkLastChar === '.' || sum % 1 !== 0) {
+		return output
+	} else if (sum % 1 !== 0) {
+		return output
 	} else if (output.secondOperand !== '0') {
 		const number = output.secondOperand
 		const decimal = number + '.'
-		outputCopy.secondOperand = decimal
-		outputCopy.output = decimal
-		outputCopy.lastOperator = 'decimal'
-		outputCopy.operator = '0'
-		const finalOutput = setFontSize(outputCopy)
+		output.secondOperand = decimal
+		output.output = decimal
+		const finalOutput = setFontSize(output)
 		return finalOutput
 	} else if (output.secondOperand === '0' && output.operator === '0') {
-		const number = outputCopy.firstOperand
+		const number = output.firstOperand
 		const decimal = number + '.'
-		outputCopy.firstOperand = decimal
-		outputCopy.output = decimal
-		outputCopy.lastOperator = 'decimal'
-		outputCopy.operator = '0'
-		const finalOutput = setFontSize(outputCopy)
+		output.firstOperand = decimal
+		output.output = decimal
+		const finalOutput = setFontSize(output)
 		return finalOutput
 	} else if (output.secondOperand === '0' && output.operator !== '0') {
-		outputCopy.secondOperand = '0.'
-		outputCopy.output = '0.'
-		outputCopy.lastOperator = 'decimal'
-		outputCopy.operator = '0'
-		const finalOutput = setFontSize(outputCopy)
+		output.secondOperand = '0.'
+		output.output = '0.'
+		const finalOutput = setFontSize(output)
 		return finalOutput
 	}
 }
 
 function handlePercent(output) {
-	const outputCopy = { ...output }
 	const decimal = []
 	if (output.secondOperand !== '0') {
-		const newOutput = calculateSum(outputCopy)
+		const newOutput = calculateSum(output)
 		const outputSum = newOutput.sum
 		const calc = outputSum / 100
 		decimal.push(calc)
@@ -85,12 +74,12 @@ function handlePercent(output) {
 		const calc = num / 100
 		decimal.push(calc)
 	}
-	outputCopy.sum = decimal[0]
-	outputCopy.firstOperand = '' + decimal[0]
-	outputCopy.output = '' + decimal[0]
-	outputCopy.operator = '0'
-	outputCopy.lastOperator = 'percent'
-	const finalOutput = setFontSize(outputCopy)
+	output.sum = decimal[0]
+	output.firstOperand = '' + decimal[0]
+	output.output = '' + decimal[0]
+	output.operator = '0'
+	output.lastOperator = 'percent'
+	const finalOutput = setFontSize(output)
 	return finalOutput
 }
 
@@ -112,58 +101,52 @@ function toggleNumber(output) {
 }
 
 function setOperator(output, newInput) {
-	const outputCopy = { ...output }
 	const input = newInput
 	if (output.secondOperand !== '0') {
 		const sum = calculateSum(output)
 		sum.operator = input
 		return sum
 	} else {
-		outputCopy.operator = input
-		outputCopy.secondOperand = '0'
-		return outputCopy
+		output.operator = input
+		output.secondOperand = '0'
+		return output
 	}
 }
 
 function handleNumbers(output, newInput) {
-	const outputCopy = { ...output }
 	if (output.firstOperand === '0') {
-		outputCopy.clearButton = 'C'
-		outputCopy.firstOperand = newInput
-		outputCopy.output = newInput
-		outputCopy.sum = parseFloat(newInput)
-
-		return outputCopy
-	}
-	if (output.firstOperand !== '0' && output.operator === '0') {
+		output.clearButton = 'C'
+		output.firstOperand = newInput
+		output.output = newInput
+		output.sum = parseFloat(newInput)
+		return output
+	} else if (output.firstOperand !== '0' && output.operator === '0') {
 		const currentNumber = output.firstOperand + newInput
-		outputCopy.firstOperand = currentNumber
-		outputCopy.output = currentNumber
-		outputCopy.sum = parseFloat(currentNumber)
-		const finalOutput = setFontSize(outputCopy)
+		output.firstOperand = currentNumber
+		output.output = currentNumber
+		output.sum = parseFloat(currentNumber)
+		const finalOutput = setFontSize(output)
 		return finalOutput
-	}
-	if (
+	} else if (
 		output.firstOperand !== '0' &&
 		output.operator !== '0' &&
 		output.secondOperand === '0'
 	) {
-		outputCopy.secondOperand = newInput
-		outputCopy.output = newInput
-		outputCopy.sum = parseFloat(newInput)
+		output.secondOperand = newInput
+		output.output = newInput
+		output.sum = parseFloat(newInput)
 
-		return outputCopy
-	}
-	if (
+		return output
+	} else if (
 		output.firstOperand !== '0' &&
 		output.operator !== '0' &&
 		output.secondOperand !== '0'
 	) {
 		const currentNumber = output.secondOperand + newInput
-		outputCopy.secondOperand = currentNumber
-		outputCopy.output = currentNumber
-		outputCopy.sum = parseFloat(currentNumber)
-		const finalOutput = setFontSize(outputCopy)
+		output.secondOperand = currentNumber
+		output.output = currentNumber
+		output.sum = parseFloat(currentNumber)
+		const finalOutput = setFontSize(output)
 		return finalOutput
 	} else {
 		console.log('error')
@@ -171,80 +154,69 @@ function handleNumbers(output, newInput) {
 }
 
 function calculateSum(output) {
-	const outputCopy = { ...output }
 	if (
-		outputCopy.firstOperand !== '0' &&
-		outputCopy.operator !== '0' &&
-		outputCopy.secondOperand !== '0'
+		output.firstOperand !== '0' &&
+		output.operator !== '0' &&
+		output.secondOperand !== '0'
 	) {
-		const sum = runCalculation(outputCopy)
+		const sum = runCalculation(output)
 		return sum
 	} else if (
-		outputCopy.firstOperand !== '0' &&
-		outputCopy.operator !== '0' &&
-		outputCopy.secondOperand === '0'
+		output.firstOperand !== '0' &&
+		output.operator !== '0' &&
+		output.secondOperand === '0'
 	) {
-		const secondOperand = outputCopy.firstOperand
-		outputCopy.secondOperand = secondOperand
-		const sum = runCalculation(outputCopy)
+		const secondOperand = output.firstOperand
+		output.secondOperand = secondOperand
+		const sum = runCalculation(output)
 		return sum
 	} else if (
-		outputCopy.firstOperand !== '0' &&
-		outputCopy.operator === '0' &&
-		outputCopy.secondOperand === '0' &&
-		outputCopy.lastOperator !== '0' &&
-		outputCopy.lastSecondOperand !== '0'
+		output.firstOperand !== '0' &&
+		output.operator === '0' &&
+		output.secondOperand === '0' &&
+		output.lastOperator !== '0' &&
+		output.lastSecondOperand !== '0'
 	) {
-		const operator = outputCopy.lastOperator
-		const secondOperand = outputCopy.lastSecondOperand
-		outputCopy.operator = operator
-		outputCopy.secondOperand = secondOperand
-		const sum = runCalculation(outputCopy)
+		const operator = output.lastOperator
+		const secondOperand = output.lastSecondOperand
+		output.operator = operator
+		output.secondOperand = secondOperand
+		const sum = runCalculation(output)
 		return sum
 	} else if (
-		outputCopy.firstOperand !== '0' &&
-		outputCopy.operator === '0' &&
-		outputCopy.secondOperand === '0' &&
-		outputCopy.lastOperator === '0' &&
-		outputCopy.lastSecondOperand === '0'
+		output.firstOperand !== '0' &&
+		output.operator === '0' &&
+		output.secondOperand === '0' &&
+		output.lastOperator === '0' &&
+		output.lastSecondOperand === '0'
 	) {
-		return outputCopy
+		return output
 	}
 }
 function runCalculation(output) {
-	const outputCopy = { ...output }
 	let sum = []
-	if (outputCopy.operator === 'add') {
-		sum.push(
-			parseFloat(outputCopy.firstOperand) + parseFloat(outputCopy.secondOperand)
-		)
-	} else if (outputCopy.operator === 'subtract') {
-		sum.push(
-			parseFloat(outputCopy.firstOperand) - parseFloat(outputCopy.secondOperand)
-		)
-	} else if (outputCopy.operator === 'divide') {
-		sum.push(
-			parseFloat(outputCopy.firstOperand) / parseFloat(outputCopy.secondOperand)
-		)
-	} else if (outputCopy.operator === 'multiply') {
-		sum.push(
-			parseFloat(outputCopy.firstOperand) * parseFloat(outputCopy.secondOperand)
-		)
+	if (output.operator === 'add') {
+		sum.push(parseFloat(output.firstOperand) + parseFloat(output.secondOperand))
+	} else if (output.operator === 'subtract') {
+		sum.push(parseFloat(output.firstOperand) - parseFloat(output.secondOperand))
+	} else if (output.operator === 'divide') {
+		sum.push(parseFloat(output.firstOperand) / parseFloat(output.secondOperand))
+	} else if (output.operator === 'multiply') {
+		sum.push(parseFloat(output.firstOperand) * parseFloat(output.secondOperand))
 	}
 	if (sum[0] === 'undefined') {
-		const error = clearOutput(outputCopy)
+		const error = clearOutput(output)
 		error.output = 'error'
 		return error
 	} else {
 		const decimalSum = sum[0].toFixed(15)
 		const finalSum = parseFloat(decimalSum)
-		const finalOutput = setSum(outputCopy, finalSum)
+		const finalOutput = setSum(output, finalSum)
 		return finalOutput
 	}
 }
 
 function setSum(output, sum) {
-	const outputCopy = { ...output }
 	const sumString = '' + sum
 	const operatorArray = []
 	output.operator === '0' && output.lastOperator !== '0'
@@ -255,19 +227,18 @@ function setSum(output, sum) {
 		? operatorArray.push(output.lastSecondOperand)
 		: operatorArray.push(output.secondOperand)
 
-	outputCopy.firstOperand = sumString
-	outputCopy.operator = '0'
-	outputCopy.secondOperand = '0'
-	outputCopy.sum = sum
-	outputCopy.output = sumString
-	outputCopy.lastOperator = operatorArray[0]
-	outputCopy.lastSecondOperand = operatorArray[1]
-	const finalOutput = setFontSize(outputCopy)
+	output.firstOperand = sumString
+	output.operator = '0'
+	output.secondOperand = '0'
+	output.sum = sum
+	output.output = sumString
+	output.lastOperator = operatorArray[0]
+	output.lastSecondOperand = operatorArray[1]
+	const finalOutput = setFontSize(output)
 	return finalOutput
 }
 
 function setFontSize(output) {
-	// const outputCopy = { ...output }
 	const outputData = output.output
 	const length = outputData.length
 	if (length > 22) {
@@ -315,22 +286,20 @@ function setFontSize(output) {
 	} else if (output.output === 'undefined') {
 		output.fontSize = '55px'
 	}
-	// outputCopy.fontSize = '55px'
 	return output
 }
 
 function clearOutput(output) {
-	const outputCopy = { ...output }
-	outputCopy.sum = 0
-	outputCopy.secondOperand = '0'
-	outputCopy.firstOperand = '0'
-	outputCopy.operator = '0'
-	outputCopy.output = '0'
-	outputCopy.lastOperator = '0'
-	outputCopy.lastSecondOperand = '0'
-	outputCopy.fontSize = '55px'
-	outputCopy.clearButton = 'AC'
-	return outputCopy
+	output.sum = 0
+	output.secondOperand = '0'
+	output.firstOperand = '0'
+	output.operator = '0'
+	output.output = '0'
+	output.lastOperator = '0'
+	output.lastSecondOperand = '0'
+	output.fontSize = '55px'
+	output.clearButton = 'AC'
+	return output
 }
 
 export {

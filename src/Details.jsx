@@ -29,9 +29,6 @@ function Details() {
 							Project repo on Github
 						</a>
 					</p>
-					<p>Tests:</p>
-					<p>Roadblocks:</p>
-					<p>Future sprints: </p>
 				</details>
 			</section>
 		</>
