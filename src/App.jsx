@@ -1,12 +1,10 @@
 import './App.css'
 import Header from './Header'
 import Calculator from './Calculator'
-
 import Footer from './Footer'
 import Draggable from 'react-draggable'
 import Details from './Details'
 import React from 'react'
-// import ReactDOM from 'react-dom'
 
 function App() {
 	return (
