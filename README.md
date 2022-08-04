@@ -2,6 +2,10 @@
 
 This project is a calculator based on the design and functionality of the mac desktop calculator.
 
+## Deployed Project
+
+https://hannah-victoria-robson.github.io/react-calculator/
+
 ## Available Scripts
 
 In the project directory, you can run:
