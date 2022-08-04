@@ -248,6 +248,10 @@ h3 {
 	font-size: 18px;
 }
 
+.details-list-item {
+	text-align: left;
+}
+
 /* ---- Calculator Frame ---- */
 
 .calc-frame {
@@ -269,11 +273,11 @@ h3 {
 	background-color: #e8e8e8;
 }
 
-li {
+.footer-list-item {
 	text-decoration: none;
 	display: inline;
 }
-li + li::before {
+.footer-list-item + .footer-list-item::before {
 	content: ' | ';
 }
 .built-by {

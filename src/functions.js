@@ -85,19 +85,15 @@ function handlePercent(output) {
 
 function toggleNumber(output) {
 	const sum = output.sum
-	if (Math.sign(sum) === 1 || Math.sign(sum) === -1) {
-		const subtract = sum * 2
-		const newSum = sum - subtract
-		const newSumString = '' + newSum
-		output.firstOperand = newSumString
-		output.sum = newSum
-		output.output = newSumString
-		output.operator = '0'
-		output.lastOperator = 'toggle'
-		return output
-	} else if (Math.sign(sum) === 0) {
-		return output
-	}
+	const subtract = sum * 2
+	const newSum = sum - subtract
+	const newSumString = '' + newSum
+	output.firstOperand = newSumString
+	output.sum = newSum
+	output.output = newSumString
+	output.operator = '0'
+	output.lastOperator = 'toggle'
+	return output
 }
 
 function setOperator(output, newInput) {
@@ -273,13 +269,13 @@ function setFontSize(output) {
 		output.fontSize = fontSize + 'px'
 	} else if (length > 10 && length <= 13) {
 		const extraLength = length - 9
-		const remove = 50 - extraLength
+		const remove = 55 - extraLength
 		const minus = remove * 0.8
 		const fontSize = minus
 		output.fontSize = fontSize + 'px'
 	} else if (length > 8 && length <= 10) {
 		const extraLength = length - 9
-		const remove = 50 - extraLength
+		const remove = 55 - extraLength
 		const minus = remove * 0.89
 		const fontSize = minus
 		output.fontSize = fontSize + 'px'
