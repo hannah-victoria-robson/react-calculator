@@ -2,6 +2,12 @@
 
 This project is a calculator based on the design and functionality of the mac desktop calculator.
 
+Stack used: HTML, CSS, React, Jest, Draggable
+
+Design: The calculator design is based off of the mac desktop calculator app. This was done as a way to practice front-end styling from a design brief.
+
+Functionality: The functionality of this calculator is also based on the mac desktop calculator app.
+
 ## Deployed Project
 
 https://hannah-victoria-robson.github.io/react-calculator/
