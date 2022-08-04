@@ -11,9 +11,9 @@ function Footer() {
 							View code on github
 						</a>
 					</li>
-					<li className="footer-list-item">
+					{/* <li className="footer-list-item">
 						<a href="#"> View Portfolio </a>
-					</li>
+					</li> */}
 					<li className="footer-list-item">
 						<a href="https://www.linkedin.com/in/hannahvrobson/">
 							View Linkedin

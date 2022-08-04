@@ -8,6 +8,10 @@ Design: The calculator design is based off of the mac desktop calculator app. Th
 
 Functionality: The functionality of this calculator is also based on the mac desktop calculator app.
 
+## Deployed Project
+
+https://hannah-victoria-robson.github.io/react-calculator/
+
 ## Available Scripts
 
 In the project directory, you can run:
