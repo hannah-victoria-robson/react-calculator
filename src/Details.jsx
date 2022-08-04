@@ -9,7 +9,7 @@ function Details() {
 					<ul>
 						<li className="details-list-item">
 							<p>
-								Stack used: HTML, CSS, React,{' '}
+								Stack used: HTML, CSS, Javascript, React,{' '}
 								<a href="https://jestjs.io/"> Jest</a>
 								,&nbsp;
 								<a href="https://www.npmjs.com/package/react-draggable">
