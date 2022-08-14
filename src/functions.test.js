@@ -298,6 +298,31 @@ describe('runCalculation', () => {
 			clearButton: 'C',
 		})
 	})
+	it('should add two floats together correctly', () => {
+		expect(
+			runCalculation({
+				firstOperand: '1.1',
+				operator: 'add',
+				secondOperand: '2.2',
+				sum: 2.2,
+				output: '2.2',
+				lastOperator: '0',
+				lastSecondOperand: '0',
+				fontSize: '55px',
+				clearButton: 'C',
+			})
+		).toEqual({
+			firstOperand: '3.3',
+			operator: '0',
+			secondOperand: '0',
+			sum: 3.3,
+			output: '3.3',
+			lastOperator: 'add',
+			lastSecondOperand: '2.2',
+			fontSize: '55px',
+			clearButton: 'C',
+		})
+	})
 })
 
 describe('setFontSize', () => {
@@ -322,7 +347,7 @@ describe('setFontSize', () => {
 			output: '1234567891',
 			lastOperator: 'add',
 			lastSecondOperand: '23',
-			fontSize: '43.61px',
+			fontSize: '48.06px',
 			clearButton: 'C',
 		})
 	})
@@ -364,7 +389,7 @@ describe('handleDecimal', () => {
 		expect(
 			handleDecimal({
 				firstOperand: '1.',
-				operator: 'decimal',
+				operator: '0',
 				secondOperand: '0',
 				sum: 1,
 				output: '1.',
@@ -390,7 +415,7 @@ describe('handleDecimal', () => {
 		expect(
 			handleDecimal({
 				firstOperand: '1.9',
-				operator: 'decimal',
+				operator: '0',
 				secondOperand: '0',
 				sum: 1.9,
 				output: '1.9',
@@ -416,7 +441,7 @@ describe('handleDecimal', () => {
 		expect(
 			handleDecimal({
 				firstOperand: '1',
-				operator: 'decimal',
+				operator: '0',
 				secondOperand: '2',
 				sum: 2,
 				output: '2',

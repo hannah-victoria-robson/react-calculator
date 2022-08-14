@@ -35,7 +35,6 @@ function handleDecimal(output) {
 	const checkLastChar = lastCharacter.substr(-1)
 	const sum = output.sum
 	output.lastOperator = 'decimal'
-	output.operator = '0'
 	if (checkLastChar === '.' || sum % 1 !== 0) {
 		return output
 	} else if (sum % 1 !== 0) {
